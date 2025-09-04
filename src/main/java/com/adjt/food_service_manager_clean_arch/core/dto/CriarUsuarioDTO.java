@@ -1,8 +1,8 @@
-package com.adjt.food_service_manager.core.dto;
+package com.adjt.food_service_manager_clean_arch.core.dto;
 
 import java.time.LocalDate;
 
-import com.adjt.food_service_manager.core.enums.PerfilUsuario;
+import com.adjt.food_service_manager_clean_arch.core.enums.TipoUsuario;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,6 +16,6 @@ public class CriarUsuarioDTO {
     private String senha;
     private String cpf;
     private LocalDate dataNascimento;
-    private PerfilUsuario perfil;
+    private TipoUsuario tipoUsuario;
 
 }
