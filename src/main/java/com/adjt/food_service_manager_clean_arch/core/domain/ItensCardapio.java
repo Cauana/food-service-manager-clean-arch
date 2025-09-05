@@ -5,14 +5,21 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+
+@Data
+@Builder
+@AllArgsConstructor
 @Entity
 public class ItensCardapio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String nomeItem;
-    private String descricaoItem;
-    private Double precoItem;
-    private Boolean disponibilidadeItem;
-    private String fotoItem;
+    private String nome;
+    private String descricao;
+    private Double preco;
+    private Boolean disponibilidade;
+    private String foto;
     private Restaurante restaurante;
 }

@@ -9,13 +9,12 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class CriarUsuarioDTO {
+public class CriarUsuarioRequestDto {
     private String nome;
     private String email;
     private String login;
     private String senha;
     private String cpf;
     private LocalDate dataNascimento;
-    private TipoUsuario tipoUsuario;
 
 }
