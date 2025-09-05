@@ -1,5 +1,7 @@
 package com.adjt.food_service_manager_clean_arch.infra.database.entity;
 
+import com.adjt.food_service_manager_clean_arch.core.enums.TipoUsuario;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,8 +20,9 @@ public class UsuarioEntity {
     private String nome;
     private String email;
     private String cpf;
+    private String login;
     private String senha;
-    private String tipoUsuario;
+    private TipoUsuario tipoUsuario;
 
 }
 
