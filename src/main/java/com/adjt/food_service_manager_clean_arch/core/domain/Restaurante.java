@@ -11,7 +11,6 @@ import lombok.Data;
 @Data
 @Builder
 @AllArgsConstructor
-@Entity
 public class Restaurante {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

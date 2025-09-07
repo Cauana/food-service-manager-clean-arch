@@ -12,7 +12,6 @@ import lombok.Data;
 @Data
 @Builder
 @AllArgsConstructor
-@Entity
 public class ItensCardapio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
