@@ -8,4 +8,4 @@ COPY pom.xml /app
 
 RUN mvn clean package -DskipTests
 
-CMD ["java", "-jar", "/app/target/food-service-manager.jar"]
+CMD ["java", "-jar", "target/food-service-manager.jar"]

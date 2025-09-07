@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.9adjt</groupId>
-	<artifactId>food_service_manager_clean_arch</artifactId>
+	<artifactId>food-service-manager-clean-arch</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>food_service_manager_clean_arch</name>
+	<name>food-service-manager-clean-arch</name>
 	<description>Sistema para que restaurantes gerenciem eficientimente suas operações</description>
 	<url/>
 	<licenses>
