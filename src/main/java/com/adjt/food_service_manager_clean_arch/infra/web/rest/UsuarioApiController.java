@@ -18,19 +18,9 @@ public class UsuarioApiController {
 
     @PostMapping
     public Usuario criarUsuario(@RequestBody CriarUsuarioDto usuarioDto) {
-        Usuario usuario = Usuario.builder()
-                .nome(usuarioDto.getNome())
-                .email(usuarioDto.getEmail())
-                .cpf(usuarioDto.getCpf())
-                .login(usuarioDto.getLogin())
-                .senha(usuarioDto.getSenha())
-                .tipoUsuario(usuarioDto.getTipoUsuario())
-                .build();
-
-        usuario = usuarioController.criarUsuario(usuarioDto);
+        Usuario usuario = usuarioController.criarUsuario(usuarioDto);
         log.info("Usuário criado com ID: {}", usuario.getId());
-
-        return usuarioController.criarUsuario(map(usuario));
+        return usuario;
     }
 
     public CriarUsuarioDto map(Usuario usuario) {
