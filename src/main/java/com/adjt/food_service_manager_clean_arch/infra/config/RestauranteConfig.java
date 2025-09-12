@@ -8,6 +8,7 @@ import com.adjt.food_service_manager_clean_arch.core.gateway.UsuarioGateway;
 import com.adjt.food_service_manager_clean_arch.core.usecase.CadastrarRestauranteUseCaseImpl;
 import com.adjt.food_service_manager_clean_arch.infra.database.repository.RestauranteRepository;
 import com.adjt.food_service_manager_clean_arch.infra.gateway.RestauranteJpaGateway;
+import com.adjt.food_service_manager_clean_arch.infra.mapper.UsuarioEntityMapper;
 
 @Configuration
 public class RestauranteConfig {
@@ -18,7 +19,12 @@ public class RestauranteConfig {
     }
 
     @Bean
-    public RestauranteGateway restauranteGateway(RestauranteRepository restauranteRepository) {
-        return new RestauranteJpaGateway(restauranteRepository, new com.adjt.food_service_manager_clean_arch.infra.mapper.RestauranteEntityMapper());
+    public RestauranteGateway restauranteGateway(RestauranteRepository restauranteRepository, com.adjt.food_service_manager_clean_arch.infra.mapper.RestauranteEntityMapper restauranteEntityMapper) {
+        return new RestauranteJpaGateway(restauranteRepository, restauranteEntityMapper);
     }
+
+    @Bean
+    public UsuarioEntityMapper usuarioEntityMapper() {
+        return new UsuarioEntityMapper();
+}
 }

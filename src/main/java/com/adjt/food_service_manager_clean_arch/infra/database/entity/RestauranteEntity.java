@@ -20,6 +20,8 @@ public class RestauranteEntity {
     private String nome;
     private String endereco;
     private String tipoCozinha;
-    private Long idDonoRestaurante;
+    @ManyToOne
+    @JoinColumn(name = "id_dono_restaurante", referencedColumnName = "id")
+    private UsuarioEntity donoRestaurante;
 
 }

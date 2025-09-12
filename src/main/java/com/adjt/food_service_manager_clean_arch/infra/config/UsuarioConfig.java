@@ -5,8 +5,8 @@ import org.springframework.context.annotation.Configuration;
 
 import com.adjt.food_service_manager_clean_arch.core.gateway.UsuarioGateway;
 import com.adjt.food_service_manager_clean_arch.core.usecase.CadastrarUsuarioUseCaseImpl;
-import com.adjt.food_service_manager_clean_arch.infra.database.UsuarioJpaGateway;
 import com.adjt.food_service_manager_clean_arch.infra.database.repository.UsuarioRepository;
+import com.adjt.food_service_manager_clean_arch.infra.gateway.UsuarioJpaGateway;
 
 
 @Configuration
