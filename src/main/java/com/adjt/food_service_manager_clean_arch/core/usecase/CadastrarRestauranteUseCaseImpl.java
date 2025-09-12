@@ -15,19 +15,19 @@ public class CadastrarRestauranteUseCaseImpl {
     private final UsuarioGateway usuarioGateway;
 
     public Restaurante criarRestaurante(CriarRestauranteDto novoRestaurante) {
-        Usuario dono = usuarioGateway.buscarPorCpf(novoRestaurante.getDonoRestaurante().toString())
+        Usuario dono = usuarioGateway.buscarPorId(novoRestaurante.getIdDonoRestaurante())
                         .orElseThrow(() -> new RuntimeException("Usuário dono não encontrado"));
 
-        return restauranteGateway.criarRestaurante(map(novoRestaurante, dono.getId()));
+        return restauranteGateway.criarRestaurante(map(novoRestaurante, dono));
     }
 
-    public Restaurante map(CriarRestauranteDto dto, Long donoId) {
+    public Restaurante map(CriarRestauranteDto dto, Usuario dono) {
 
 		return Restaurante.builder()
 				.nome(dto.getNome())
 				.endereco(dto.getEndereco())
 				.tipoCozinha(dto.getTipoCozinha())
-				.donoRestaurante(donoId)
+				.donoRestaurante(dono)
 				.build();
 	}
 }

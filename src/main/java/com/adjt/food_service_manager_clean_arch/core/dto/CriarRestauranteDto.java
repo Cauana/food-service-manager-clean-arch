@@ -15,5 +15,5 @@ public class CriarRestauranteDto {
     private String nome;
     private String endereco;
     private String tipoCozinha;
-    private Long donoRestaurante;
+    private Long idDonoRestaurante;
 }

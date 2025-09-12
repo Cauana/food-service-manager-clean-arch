@@ -23,13 +23,13 @@ public class RestauranteJpaGateway implements RestauranteGateway {
     public Restaurante criarRestaurante(Restaurante restaurante) {
         RestauranteEntity entity = mapper.toEntity(restaurante);
         repository.save(entity);
-        return mapper.toRestaurante(entity, null); // se precisar do mapper de usuário, injete
+        return mapper.toRestaurante(entity);
     }
 
     @Override
     public Restaurante buscarPorId(Long id) {
         return repository.findById(id)
-                         .map(entity -> mapper.toRestaurante(entity, null))
+                         .map(entity -> mapper.toRestaurante(entity))
                          .orElse(null);
     }
 

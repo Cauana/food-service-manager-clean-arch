@@ -21,7 +21,7 @@ public class RestauranteApiController {
     @PostMapping
     public Restaurante criarRestaurante(@RequestBody CriarRestauranteDto restauranteDto) {
         Restaurante restaurante = restauranteController.criarRestaurante(restauranteDto);
-        log.info("Restaurante criado com ID: {}", restaurante.getId());
+        log.info("Restaurante criado com ID: {}, nome: {}, dono: {}", restaurante.getId(), restaurante.getNome(), restaurante.getDonoRestaurante().getNome());
         return restaurante;
     }
 
@@ -31,7 +31,7 @@ public class RestauranteApiController {
 				.nome(restaurante.getNome())
 				.endereco(restaurante.getEndereco())
 				.tipoCozinha(restaurante.getTipoCozinha())
-				.donoRestaurante(restaurante.getDonoRestaurante())
+				.idDonoRestaurante(restaurante.getDonoRestaurante().getId())
 				.build();
 	}
 }
