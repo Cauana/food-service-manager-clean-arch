@@ -5,8 +5,10 @@ import java.util.Optional;
 import org.springframework.stereotype.Component;
 
 import com.adjt.food_service_manager_clean_arch.core.domain.Restaurante;
+import com.adjt.food_service_manager_clean_arch.core.domain.Usuario;
 import com.adjt.food_service_manager_clean_arch.core.gateway.RestauranteGateway;
 import com.adjt.food_service_manager_clean_arch.infra.database.entity.RestauranteEntity;
+import com.adjt.food_service_manager_clean_arch.infra.database.entity.UsuarioEntity;
 import com.adjt.food_service_manager_clean_arch.infra.database.repository.RestauranteRepository;
 import com.adjt.food_service_manager_clean_arch.infra.mapper.RestauranteEntityMapper;
 
@@ -26,12 +28,15 @@ public class RestauranteJpaGateway implements RestauranteGateway {
         return mapper.toRestaurante(entity);
     }
 
-    @Override
-    public Restaurante buscarPorId(Long id) {
-        return repository.findById(id)
-                         .map(entity -> mapper.toRestaurante(entity))
-                         .orElse(null);
-    }
-
+	@Override
+	public Optional<Restaurante> buscarPorId(Long id) {
+		Optional<RestauranteEntity> restauranteEntityOp = repository.findById(id);
+		if (restauranteEntityOp.isPresent()) {
+			var restauranteEntity = restauranteEntityOp.get();
+			var restaurante = mapper.toRestaurante(restauranteEntity);
+			return Optional.of(restaurante);
+		}
+		return Optional.empty();
+	}
 
 }
