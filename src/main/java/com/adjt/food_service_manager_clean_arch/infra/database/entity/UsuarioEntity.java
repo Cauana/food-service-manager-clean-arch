@@ -1,7 +1,6 @@
 package com.adjt.food_service_manager_clean_arch.infra.database.entity;
 
 import com.adjt.food_service_manager_clean_arch.core.enums.TipoUsuario;
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Getter
 @Data
 @Builder
 @AllArgsConstructor
@@ -15,5 +14,6 @@ public class CriarRestauranteDto {
     private String nome;
     private String endereco;
     private String tipoCozinha;
+    private String horarioFuncionamento;
     private Long idDonoRestaurante;
 }

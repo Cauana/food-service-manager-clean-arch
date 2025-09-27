@@ -3,8 +3,6 @@ package com.adjt.food_service_manager_clean_arch.infra.mapper;
 import org.springframework.stereotype.Component;
 import com.adjt.food_service_manager_clean_arch.core.domain.Restaurante;
 import com.adjt.food_service_manager_clean_arch.infra.database.entity.RestauranteEntity;
-import com.adjt.food_service_manager_clean_arch.infra.database.entity.UsuarioEntity;
-import com.adjt.food_service_manager_clean_arch.infra.gateway.UsuarioJpaGateway;
 
 import lombok.RequiredArgsConstructor;
 
@@ -16,16 +14,19 @@ public class RestauranteEntityMapper {
 
 
     public RestauranteEntity toEntity(Restaurante restaurante) {
+        if(restaurante == null) return null;
         return RestauranteEntity.builder()
                 .id(restaurante.getId())
                 .nome(restaurante.getNome())
                 .endereco(restaurante.getEndereco())
                 .tipoCozinha(restaurante.getTipoCozinha())
+                .horarioFuncionamento(restaurante.getHorarioFuncionamento())
                 .donoRestaurante(usuarioEntityMapper.toEntity(restaurante.getDonoRestaurante()))
                 .build();
     }
 
     public Restaurante toRestaurante(RestauranteEntity entity) {
+        if(entity == null) return null;
         return Restaurante.builder()
                 .id(entity.getId())
                 .nome(entity.getNome())

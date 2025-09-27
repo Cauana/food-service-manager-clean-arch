@@ -16,6 +16,7 @@ public class ItemCardapioEntityMapper {
 
 
     public ItemCardapioEntity toEntity(ItemCardapio itemCardapio) {
+        if(itemCardapio == null) return null;
         return ItemCardapioEntity.builder()
                 .id(itemCardapio.getId())
                 .nome(itemCardapio.getNome())
@@ -26,6 +27,7 @@ public class ItemCardapioEntityMapper {
     }
 
     public ItemCardapio toItemCardapio(ItemCardapioEntity entity) {
+        if(entity == null) return null;
         return ItemCardapio.builder()
                 .id(entity.getId())
                 .nome(entity.getNome())
