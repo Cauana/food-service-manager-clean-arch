@@ -8,6 +8,4 @@ import com.adjt.food_service_manager_clean_arch.infra.database.entity.Restaurant
 
 public interface RestauranteRepository extends JpaRepository<RestauranteEntity, Long> {
 
-    Optional<RestauranteEntity> findById(Long id);
-
 }

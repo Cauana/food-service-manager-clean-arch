@@ -1,5 +1,10 @@
 package com.adjt.food_service_manager_clean_arch.infra.config;
 
+import com.adjt.food_service_manager_clean_arch.core.usecase.BuscarItemCardapioUseCaseImpl;
+import com.adjt.food_service_manager_clean_arch.core.usecase.ListarTodosItensCardapioUseCaseImpl;
+import com.adjt.food_service_manager_clean_arch.infra.mapper.ItemCardapioEntityMapper;
+import com.adjt.food_service_manager_clean_arch.infra.mapper.RestauranteEntityMapper;
+import com.adjt.food_service_manager_clean_arch.infra.mapper.UsuarioEntityMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -18,15 +23,23 @@ public class ItemConfig {
     public CadastrarItemCardapioUseCaseImpl cadastrarItemCardapioUseCase(ItemCardapioGateway itemCardapioGateway, RestauranteGateway restauranteGateway) {
         return new CadastrarItemCardapioUseCaseImpl(itemCardapioGateway, restauranteGateway);
     }
+    @Bean
+    public BuscarItemCardapioUseCaseImpl buscarItemCardapioUseCase(ItemCardapioGateway itemCardapioGateway) {
+        return new BuscarItemCardapioUseCaseImpl(itemCardapioGateway);
+    }
+    @Bean
+    public ListarTodosItensCardapioUseCaseImpl listarTodosItensCardapioUseCase(ItemCardapioGateway itemCardapioGateway) {
+        return new ListarTodosItensCardapioUseCaseImpl(itemCardapioGateway);
+    }
 
     @Bean
-    public ItemCardapioGateway itemCardapioGateway(ItemCardapioRepository itemCardapioRepository, com.adjt.food_service_manager_clean_arch.infra.mapper.ItemCardapioEntityMapper itemCardapioEntityMapper) {
+    public ItemCardapioGateway itemCardapioGateway(ItemCardapioRepository itemCardapioRepository, ItemCardapioEntityMapper itemCardapioEntityMapper) {
         return new ItemCardapioJpaGateway(itemCardapioRepository, itemCardapioEntityMapper);
     }
 
     @Bean
-    public ItemCardapioApiController itemCardapioApiController(CadastrarItemCardapioUseCaseImpl cadastrarItemCardapioUseCase) {
-        return new ItemCardapioApiController(cadastrarItemCardapioUseCase);
+    public RestauranteEntityMapper restauranteEntityMapper(UsuarioEntityMapper usuarioEntityMapper) {
+        return new RestauranteEntityMapper(usuarioEntityMapper);
     }
 
 }

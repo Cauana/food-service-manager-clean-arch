@@ -3,14 +3,15 @@ package com.adjt.food_service_manager_clean_arch.infra.gateway;
 import org.springframework.stereotype.Component;
 
 import com.adjt.food_service_manager_clean_arch.core.domain.ItemCardapio;
-import com.adjt.food_service_manager_clean_arch.core.domain.Restaurante;
 import com.adjt.food_service_manager_clean_arch.core.gateway.ItemCardapioGateway;
 import com.adjt.food_service_manager_clean_arch.infra.database.entity.ItemCardapioEntity;
 import com.adjt.food_service_manager_clean_arch.infra.database.repository.ItemCardapioRepository;
-import com.adjt.food_service_manager_clean_arch.infra.database.repository.RestauranteRepository;
 import com.adjt.food_service_manager_clean_arch.infra.mapper.ItemCardapioEntityMapper;
-import com.adjt.food_service_manager_clean_arch.infra.mapper.RestauranteEntityMapper;
 import lombok.RequiredArgsConstructor;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
@@ -25,10 +26,15 @@ public class ItemCardapioJpaGateway implements ItemCardapioGateway {
     }
 
     @Override
-    public ItemCardapio buscarPorId(Long id) {
+    public Optional<ItemCardapio> buscarPorId(Long id) {
         return repository.findById(id)
-                         .map(entity -> mapper.toItemCardapio(entity))
-                         .orElse(null);
+                         .map(entity -> mapper.toItemCardapio(entity));
+    }
+
+    @Override
+    public List<ItemCardapio> buscarTodosItensCardapio() {
+       List<ItemCardapioEntity> itemCardapioEntities =repository.findAll();
+       return itemCardapioEntities.stream().map(mapper::toItemCardapio).collect(Collectors.toList());
     }
 
 }

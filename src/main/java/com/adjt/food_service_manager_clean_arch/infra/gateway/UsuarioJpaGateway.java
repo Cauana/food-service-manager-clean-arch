@@ -1,5 +1,7 @@
 package com.adjt.food_service_manager_clean_arch.infra.gateway;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import com.adjt.food_service_manager_clean_arch.core.domain.Usuario;
 import com.adjt.food_service_manager_clean_arch.core.gateway.UsuarioGateway;
@@ -39,4 +41,10 @@ public class UsuarioJpaGateway implements UsuarioGateway {
 		}
 		return Optional.empty();
 	}
+
+    @Override
+    public List<Usuario> buscarTodosUsuarios() {
+        List<UsuarioEntity> entities = usuarioRepository.findAll();
+        return entities.stream().map(usuarioEntityMapper::toUsuario).collect(Collectors.toList());
+    }
 }

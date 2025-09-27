@@ -1,15 +1,10 @@
 package com.adjt.food_service_manager_clean_arch.core.usecase;
-import java.util.Optional;
 
 import com.adjt.food_service_manager_clean_arch.core.domain.ItemCardapio;
 import com.adjt.food_service_manager_clean_arch.core.domain.Restaurante;
-import com.adjt.food_service_manager_clean_arch.core.domain.Usuario;
-import com.adjt.food_service_manager_clean_arch.core.dto.CriarRestauranteDto;
 import com.adjt.food_service_manager_clean_arch.core.dto.CriarItemCardapioDto;
 import com.adjt.food_service_manager_clean_arch.core.gateway.ItemCardapioGateway;
 import com.adjt.food_service_manager_clean_arch.core.gateway.RestauranteGateway;
-import com.adjt.food_service_manager_clean_arch.core.gateway.UsuarioGateway;
-
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -33,13 +28,15 @@ public class CadastrarItemCardapioUseCaseImpl {
         return itemCardapioGateway.criarItemCardapio(itemCardapio);
     }
 
-    public Restaurante map(CriarRestauranteDto dto, Usuario dono) {
+    public ItemCardapio map(CriarItemCardapioDto dto, Restaurante restaurante) {
 
-		return Restaurante.builder()
+		return ItemCardapio.builder()
 				.nome(dto.getNome())
-				.endereco(dto.getEndereco())
-				.tipoCozinha(dto.getTipoCozinha())
-				.donoRestaurante(dono)
+                .descricao(dto.getDescricao())
+                .preco(dto.getPreco())
+				.disponibilidade(dto.getDisponibilidade())
+                .foto(dto.getFoto())
+                .restaurante(restaurante)
 				.build();
 	}
 }

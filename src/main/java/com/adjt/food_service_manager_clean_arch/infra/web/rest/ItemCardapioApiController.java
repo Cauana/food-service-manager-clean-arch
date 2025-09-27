@@ -1,17 +1,19 @@
 package com.adjt.food_service_manager_clean_arch.infra.web.rest;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.adjt.food_service_manager_clean_arch.core.domain.ItemCardapio;
+import com.adjt.food_service_manager_clean_arch.core.domain.Restaurante;
 import com.adjt.food_service_manager_clean_arch.core.dto.CriarItemCardapioDto;
 import com.adjt.food_service_manager_clean_arch.core.dto.RespostaItemCardapioDto;
+import com.adjt.food_service_manager_clean_arch.core.usecase.BuscarItemCardapioUseCaseImpl;
 import com.adjt.food_service_manager_clean_arch.core.usecase.CadastrarItemCardapioUseCaseImpl;
-
+import com.adjt.food_service_manager_clean_arch.core.usecase.ListarTodosItensCardapioUseCaseImpl;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -20,22 +22,42 @@ import lombok.extern.slf4j.Slf4j;
 public class ItemCardapioApiController {
 
     private final CadastrarItemCardapioUseCaseImpl itemCardapioController;
+    private final BuscarItemCardapioUseCaseImpl buscarItemCardapioController;
+    private final ListarTodosItensCardapioUseCaseImpl listarItemCardapioController;
 
     @PostMapping
-    public RespostaItemCardapioDto criarItemCardapio(@RequestBody CriarItemCardapioDto itemCardapioDto) {
+    public ResponseEntity<RespostaItemCardapioDto> criarItemCardapio(@RequestBody CriarItemCardapioDto itemCardapioDto) {
         ItemCardapio itemCardapio = itemCardapioController.criarItemCardapio(itemCardapioDto);
         log.info("Item de cardápio criado com ID: {}, nome: {}", itemCardapio.getId(), itemCardapio.getNome());
-        return map(itemCardapio);
+        return ResponseEntity.ok(map(itemCardapio));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<RespostaItemCardapioDto>> listarItensCardapio() {
+        List<ItemCardapio> itensCardapio = listarItemCardapioController.buscarTodosItemCardapioUseCase();
+        log.info("Listando todos os Itens do Cardápio !");
+        List<RespostaItemCardapioDto> respostaItemCardapioDtos = itensCardapio.stream().map(this::map).toList();
+        return ResponseEntity.ok(respostaItemCardapioDtos);
+    }
+    @GetMapping("/{id}")
+    public ResponseEntity<RespostaItemCardapioDto> buscarPorId(@PathVariable Long id) {
+        ItemCardapio itemCardapio = buscarItemCardapioController.buscarItemCardapio(id);
+        log.info("Item do cardápio encontrado: {}, id:", itemCardapio.getId());
+        return ResponseEntity.ok(map(itemCardapio));
     }
 
     public RespostaItemCardapioDto map(ItemCardapio itemCardapio) {
-
+        if(itemCardapio == null) return null;
+        Restaurante restaurante = itemCardapio.getRestaurante();
+        String nomeRestaurante = (restaurante != null ) ? restaurante.getNome() : "Restaurante Não Encontrado";
 		return RespostaItemCardapioDto.builder()
                 .id(itemCardapio.getId())
 				.nome(itemCardapio.getNome())
 				.descricao(itemCardapio.getDescricao())
 				.preco(itemCardapio.getPreco())
-				.nomeRestaurante(itemCardapio.getRestaurante().getNome())
+                .disponibilidade(itemCardapio.getDisponibilidade())
+                .foto(itemCardapio.getFoto())
+				.nomeRestaurante(nomeRestaurante)
 				.build();
 	}
 }
