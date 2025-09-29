@@ -7,12 +7,12 @@ import com.adjt.food_service_manager_clean_arch.core.dto.RespostaItemCardapioDto
 import com.adjt.food_service_manager_clean_arch.core.usecase.BuscarItemCardapioUseCaseImpl;
 import com.adjt.food_service_manager_clean_arch.core.usecase.CadastrarItemCardapioUseCaseImpl;
 import com.adjt.food_service_manager_clean_arch.core.usecase.ListarTodosItensCardapioUseCaseImpl;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import org.springframework.web.bind.annotation.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import java.util.List;
 
 @Slf4j
@@ -29,7 +29,7 @@ public class ItemCardapioApiController {
     public ResponseEntity<RespostaItemCardapioDto> criarItemCardapio(@RequestBody CriarItemCardapioDto itemCardapioDto) {
         ItemCardapio itemCardapio = itemCardapioController.criarItemCardapio(itemCardapioDto);
         log.info("Item de cardápio criado com ID: {}, nome: {}", itemCardapio.getId(), itemCardapio.getNome());
-        return ResponseEntity.ok(map(itemCardapio));
+        return ResponseEntity.status(HttpStatus.CREATED).body(map(itemCardapio));
     }
 
     @GetMapping
