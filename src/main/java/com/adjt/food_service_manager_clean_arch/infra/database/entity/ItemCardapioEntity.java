@@ -7,7 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name="restaurantes")
+@Table(name="item_cardapio")
 @Data
 @Builder
 @AllArgsConstructor
@@ -23,6 +23,7 @@ public class ItemCardapioEntity {
     private Boolean disponibilidade;
     private String foto;
     @ManyToOne
-    @JoinColumn(name = "restaurante", referencedColumnName = "id")
+    @JoinColumn(name = "id_restaurante", referencedColumnName = "id")
     private RestauranteEntity restaurante;
+
 }
