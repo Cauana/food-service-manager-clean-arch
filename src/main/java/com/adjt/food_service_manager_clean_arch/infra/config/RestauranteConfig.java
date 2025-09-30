@@ -35,9 +35,4 @@ public class RestauranteConfig {
     public RestauranteGateway restauranteGateway(RestauranteRepository restauranteRepository, RestauranteEntityMapper restauranteEntityMapper) {
         return new RestauranteJpaGateway(restauranteRepository, restauranteEntityMapper);
     }
-
-    @Bean
-    public UsuarioEntityMapper usuarioEntityMapper() {
-        return new UsuarioEntityMapper();
-}
 }

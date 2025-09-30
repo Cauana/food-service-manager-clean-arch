@@ -1,8 +1,14 @@
 package com.adjt.food_service_manager_clean_arch.infra.mapper;
 
+import org.springframework.stereotype.Component;
+
 import com.adjt.food_service_manager_clean_arch.core.domain.Usuario;
 import com.adjt.food_service_manager_clean_arch.infra.database.entity.UsuarioEntity;
 
+import lombok.RequiredArgsConstructor;
+
+@Component
+@RequiredArgsConstructor
 public class UsuarioEntityMapper {
 
     public UsuarioEntity toEntity(Usuario usuario) {
