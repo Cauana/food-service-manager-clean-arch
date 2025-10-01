@@ -32,6 +32,7 @@ public class RestauranteEntityMapper {
                 .nome(entity.getNome())
                 .endereco(entity.getEndereco())
                 .tipoCozinha(entity.getTipoCozinha())
+                .horarioFuncionamento(entity.getHorarioFuncionamento())
                 .donoRestaurante(usuarioEntityMapper.toUsuario(entity.getDonoRestaurante()))
                 .build();
     }
