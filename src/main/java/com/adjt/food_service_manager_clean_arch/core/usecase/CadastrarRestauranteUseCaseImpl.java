@@ -27,6 +27,7 @@ public class CadastrarRestauranteUseCaseImpl {
 				.nome(dto.getNome())
 				.endereco(dto.getEndereco())
 				.tipoCozinha(dto.getTipoCozinha())
+                .horarioFuncionamento(dto.getHorarioFuncionamento())
 				.donoRestaurante(dono)
 				.build();
 	}
