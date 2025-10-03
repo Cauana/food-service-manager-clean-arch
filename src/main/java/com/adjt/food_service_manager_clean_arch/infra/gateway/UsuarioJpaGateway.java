@@ -47,4 +47,9 @@ public class UsuarioJpaGateway implements UsuarioGateway {
         List<UsuarioEntity> entities = usuarioRepository.findAll();
         return entities.stream().map(usuarioEntityMapper::toUsuario).collect(Collectors.toList());
     }
+
+    @Override
+    public Optional<Usuario> buscarPorCpf(String cpf){
+        return usuarioRepository.findByCpf(cpf).map(usuarioEntityMapper::toUsuario);
+    }
 }
