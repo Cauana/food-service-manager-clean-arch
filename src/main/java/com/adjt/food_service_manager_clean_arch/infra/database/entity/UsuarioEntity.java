@@ -2,7 +2,8 @@ package com.adjt.food_service_manager_clean_arch.infra.database.entity;
 
 import java.util.List;
 
-import com.adjt.food_service_manager_clean_arch.core.enums.TipoUsuario;
+import com.adjt.food_service_manager_clean_arch.core.domain.TipoUsuario;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,8 +26,7 @@ public class UsuarioEntity {
     private String cpf;
     private String login;
     private String senha;
-    @Enumerated(EnumType.STRING)
-    private TipoUsuario tipoUsuario;
+    private String tipoUsuario;
     @OneToMany(mappedBy = "donoRestaurante")
     private List<RestauranteEntity> restaurantes;
 

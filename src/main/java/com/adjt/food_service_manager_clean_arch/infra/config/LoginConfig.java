@@ -4,8 +4,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.adjt.food_service_manager_clean_arch.core.gateway.UsuarioGateway;
-import com.adjt.food_service_manager_clean_arch.core.usecase.LoginUsuarioUseCase;
-import com.adjt.food_service_manager_clean_arch.core.usecase.LoginUsuarioUseCaseImpl;
+import com.adjt.food_service_manager_clean_arch.core.usecase.login.LoginUsuarioUseCase;
+import com.adjt.food_service_manager_clean_arch.core.usecase.login.LoginUsuarioUseCaseImpl;
 import com.adjt.food_service_manager_clean_arch.infra.web.rest.LoginApiController;
 
 @Configuration
