@@ -1,13 +1,13 @@
 package com.adjt.food_service_manager_clean_arch.infra.config;
 
-import com.adjt.food_service_manager_clean_arch.core.usecase.BuscarUsuarioUseCaseImpl;
-import com.adjt.food_service_manager_clean_arch.core.usecase.ListarTodosUsuariosUseCaseImpl;
 import com.adjt.food_service_manager_clean_arch.infra.mapper.UsuarioEntityMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.adjt.food_service_manager_clean_arch.core.gateway.UsuarioGateway;
-import com.adjt.food_service_manager_clean_arch.core.usecase.CadastrarUsuarioUseCaseImpl;
+import com.adjt.food_service_manager_clean_arch.core.usecase.usuario.BuscarUsuarioUseCaseImpl;
+import com.adjt.food_service_manager_clean_arch.core.usecase.usuario.CadastrarUsuarioUseCaseImpl;
+import com.adjt.food_service_manager_clean_arch.core.usecase.usuario.ListarTodosUsuariosUseCaseImpl;
 import com.adjt.food_service_manager_clean_arch.infra.database.repository.UsuarioRepository;
 import com.adjt.food_service_manager_clean_arch.infra.gateway.UsuarioJpaGateway;
 

@@ -3,9 +3,10 @@ package com.adjt.food_service_manager_clean_arch.infra.web.rest;
 import com.adjt.food_service_manager_clean_arch.core.domain.Usuario;
 import com.adjt.food_service_manager_clean_arch.core.dto.CriarUsuarioDto;
 import com.adjt.food_service_manager_clean_arch.core.dto.RespostaUsuarioDto;
-import com.adjt.food_service_manager_clean_arch.core.usecase.BuscarUsuarioUseCaseImpl;
-import com.adjt.food_service_manager_clean_arch.core.usecase.CadastrarUsuarioUseCaseImpl;
-import com.adjt.food_service_manager_clean_arch.core.usecase.ListarTodosUsuariosUseCaseImpl;
+import com.adjt.food_service_manager_clean_arch.core.usecase.usuario.BuscarUsuarioUseCaseImpl;
+import com.adjt.food_service_manager_clean_arch.core.usecase.usuario.CadastrarUsuarioUseCaseImpl;
+import com.adjt.food_service_manager_clean_arch.core.usecase.usuario.ListarTodosUsuariosUseCaseImpl;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

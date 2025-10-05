@@ -42,6 +42,17 @@ public class UsuarioJpaGateway implements UsuarioGateway {
 		return Optional.empty();
 	}
 
+	@Override
+	public Optional<Usuario> buscarPorLogin(String login) {
+		Optional<UsuarioEntity> usuarioEntityOp = usuarioRepository.findByLogin(login);
+		if (usuarioEntityOp.isPresent()) {
+			var usuarioEntity = usuarioEntityOp.get();
+			var usuario = usuarioEntityMapper.toUsuario(usuarioEntity);
+			return Optional.of(usuario);
+		}
+		return Optional.empty();
+	}
+
     @Override
     public List<Usuario> buscarTodosUsuarios() {
         List<UsuarioEntity> entities = usuarioRepository.findAll();

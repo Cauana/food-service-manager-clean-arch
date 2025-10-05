@@ -1,7 +1,5 @@
 package com.adjt.food_service_manager_clean_arch.infra.config;
 
-import com.adjt.food_service_manager_clean_arch.core.usecase.BuscarItemCardapioUseCaseImpl;
-import com.adjt.food_service_manager_clean_arch.core.usecase.ListarTodosItensCardapioUseCaseImpl;
 import com.adjt.food_service_manager_clean_arch.infra.mapper.ItemCardapioEntityMapper;
 import com.adjt.food_service_manager_clean_arch.infra.mapper.RestauranteEntityMapper;
 import com.adjt.food_service_manager_clean_arch.infra.mapper.UsuarioEntityMapper;
@@ -10,7 +8,9 @@ import org.springframework.context.annotation.Configuration;
 
 import com.adjt.food_service_manager_clean_arch.core.gateway.ItemCardapioGateway;
 import com.adjt.food_service_manager_clean_arch.core.gateway.RestauranteGateway;
-import com.adjt.food_service_manager_clean_arch.core.usecase.CadastrarItemCardapioUseCaseImpl;
+import com.adjt.food_service_manager_clean_arch.core.usecase.cardapio.BuscarItemCardapioUseCaseImpl;
+import com.adjt.food_service_manager_clean_arch.core.usecase.cardapio.CadastrarItemCardapioUseCaseImpl;
+import com.adjt.food_service_manager_clean_arch.core.usecase.cardapio.ListarTodosItensCardapioUseCaseImpl;
 import com.adjt.food_service_manager_clean_arch.infra.database.repository.ItemCardapioRepository;
 import com.adjt.food_service_manager_clean_arch.infra.gateway.ItemCardapioJpaGateway;
 import com.adjt.food_service_manager_clean_arch.infra.web.rest.ItemCardapioApiController;
