@@ -1,7 +1,7 @@
 package com.adjt.food_service_manager_clean_arch.core.dto;
 import java.util.List;
 
-import com.adjt.food_service_manager_clean_arch.core.enums.TipoUsuario;
+import com.adjt.food_service_manager_clean_arch.core.domain.TipoUsuario;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,7 +17,7 @@ public class LoginResponseDto {
     private String mensagem;
     private String cpf;
     private String nome;
-    private TipoUsuario tipoUsuario;
+    private String tipoUsuario;
     private List<Long> restaurantesIds;
     
 }

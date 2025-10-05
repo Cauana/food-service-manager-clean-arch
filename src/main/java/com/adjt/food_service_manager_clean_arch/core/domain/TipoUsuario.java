@@ -7,12 +7,9 @@ import lombok.Data;
 @Data
 @Builder
 @AllArgsConstructor
-public class ItemCardapio {
+public class TipoUsuario {
     private Long id;
     private String nome;
     private String descricao;
-    private Double preco;
-    private Boolean disponibilidade;
-    private String foto;
-    private Restaurante restaurante;
+    
 }
