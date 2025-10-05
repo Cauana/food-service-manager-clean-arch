@@ -1,7 +1,10 @@
 package com.adjt.food_service_manager_clean_arch.infra.mapper;
 
+import java.util.Collections;
+
 import org.springframework.stereotype.Component;
 
+import com.adjt.food_service_manager_clean_arch.core.domain.Restaurante;
 import com.adjt.food_service_manager_clean_arch.core.domain.Usuario;
 import com.adjt.food_service_manager_clean_arch.infra.database.entity.UsuarioEntity;
 
@@ -34,6 +37,19 @@ public class UsuarioEntityMapper {
                 .login(usuarioEntity.getLogin())
                 .senha(usuarioEntity.getSenha())
                 .tipoUsuario(usuarioEntity.getTipoUsuario())
+                .restaurantes(
+                    usuarioEntity.getRestaurantes() != null
+                        ? usuarioEntity.getRestaurantes().stream()
+                            .map(restauranteEntity -> Restaurante.builder()
+                                .id(restauranteEntity.getId())
+                                .nome(restauranteEntity.getNome())
+                                .endereco(restauranteEntity.getEndereco())
+                                .tipoCozinha(restauranteEntity.getTipoCozinha())
+                                .horarioFuncionamento(restauranteEntity.getHorarioFuncionamento())
+                                .build())
+                            .toList()
+                        : Collections.emptyList()
+                )
                 .build();
     }
 }

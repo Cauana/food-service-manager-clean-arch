@@ -1,4 +1,6 @@
-package com.adjt.food_service_manager_clean_arch.core.usecase;
+package com.adjt.food_service_manager_clean_arch.core.usecase.usuario;
+
+import java.util.Collections;
 
 import com.adjt.food_service_manager_clean_arch.core.domain.Usuario;
 import com.adjt.food_service_manager_clean_arch.core.dto.CriarUsuarioDto;
@@ -25,6 +27,7 @@ public class CadastrarUsuarioUseCaseImpl {
 				.login(dto.getLogin())
 				.senha(dto.getSenha())
 				.tipoUsuario(dto.getTipoUsuario())
+				.restaurantes(Collections.emptyList())
 				.build();
 	}
 }

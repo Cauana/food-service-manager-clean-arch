@@ -1,4 +1,4 @@
-package com.adjt.food_service_manager_clean_arch.core.usecase;
+package com.adjt.food_service_manager_clean_arch.core.usecase.usuario;
 
 import com.adjt.food_service_manager_clean_arch.core.domain.Usuario;
 import com.adjt.food_service_manager_clean_arch.core.gateway.UsuarioGateway;

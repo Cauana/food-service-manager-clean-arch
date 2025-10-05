@@ -1,5 +1,7 @@
 package com.adjt.food_service_manager_clean_arch.infra.database.entity;
 
+import java.util.List;
+
 import com.adjt.food_service_manager_clean_arch.core.enums.TipoUsuario;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -25,6 +27,9 @@ public class UsuarioEntity {
     private String senha;
     @Enumerated(EnumType.STRING)
     private TipoUsuario tipoUsuario;
+    @OneToMany(mappedBy = "donoRestaurante")
+    private List<RestauranteEntity> restaurantes;
+
 
 }
 
