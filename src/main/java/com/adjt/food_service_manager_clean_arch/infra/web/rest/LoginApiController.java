@@ -6,6 +6,8 @@ import com.adjt.food_service_manager_clean_arch.core.dto.LoginRequestDto;
 import com.adjt.food_service_manager_clean_arch.core.dto.LoginResponseDto;
 import com.adjt.food_service_manager_clean_arch.core.usecase.LoginUsuarioUseCase;
 
+import jakarta.servlet.http.HttpSession;
+
 @RestController
 @RequestMapping("/auth")
 public class LoginApiController {
@@ -17,8 +19,12 @@ public class LoginApiController {
     }
 
     @PostMapping("/login")
-    public LoginResponseDto login(@RequestBody LoginRequestDto request) {
-        return loginUsuarioUseCase.login(request);
+    public LoginResponseDto login(@RequestBody LoginRequestDto request, HttpSession session) {
+        LoginResponseDto response = loginUsuarioUseCase.login(request);
+        if (response.getMensagem().equals("Login realizado com sucesso!")) {
+            session.setAttribute("usuario_logado", response);
+        }
+        return response;
     }
 }
 
