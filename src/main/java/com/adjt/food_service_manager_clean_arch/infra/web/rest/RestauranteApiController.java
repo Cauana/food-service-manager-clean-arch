@@ -8,6 +8,7 @@ import com.adjt.food_service_manager_clean_arch.core.usecase.restaurante.BuscarR
 import com.adjt.food_service_manager_clean_arch.core.usecase.restaurante.CadastrarRestauranteUseCaseImpl;
 import com.adjt.food_service_manager_clean_arch.core.usecase.restaurante.ListarTodosRestaurantesUseCaseImpl;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -27,8 +28,8 @@ public class RestauranteApiController {
     private final ListarTodosRestaurantesUseCaseImpl listarTodosRestaurantesController;
 
     @PostMapping
-    public ResponseEntity<RespostaRestauranteDto> criarRestaurante(@RequestBody CriarRestauranteDto restauranteDto) {
-        Restaurante restaurante = restauranteController.criarRestaurante(restauranteDto);
+    public ResponseEntity<RespostaRestauranteDto> criarRestaurante(@RequestBody CriarRestauranteDto restauranteDto, HttpSession session) {
+        Restaurante restaurante = restauranteController.criarRestaurante(restauranteDto, session);
         log.info("Restaurante criado com ID: {}, nome: {}, dono: {}", restaurante.getId(), restaurante.getNome(), restaurante.getDonoRestaurante().getNome());
         return ResponseEntity.status(HttpStatus.CREATED).body(map(restaurante));
     }
