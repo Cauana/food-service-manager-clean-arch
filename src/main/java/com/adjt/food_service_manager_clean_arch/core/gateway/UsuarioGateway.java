@@ -8,5 +8,6 @@ public interface UsuarioGateway {
     Usuario criar(Usuario usuario);
     Optional<Usuario> buscarPorId(Long id);
     List<Usuario> buscarTodosUsuarios();
+    Optional<Usuario> buscarPorCpf(String cpf);
 
 }
