@@ -23,6 +23,7 @@ public class LoginApiController {
         LoginResponseDto response = loginUsuarioUseCase.login(request);
         if (response.getMensagem().equals("Login realizado com sucesso!")) {
             session.setAttribute("usuario_logado", response);
+            session.setAttribute("tipoUsuario", response.getTipoUsuario());
         }
         return response;
     }
