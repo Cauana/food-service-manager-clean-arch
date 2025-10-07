@@ -1,7 +1,5 @@
 package com.adjt.food_service_manager_clean_arch.core.dto;
 
-import com.adjt.food_service_manager_clean_arch.core.enums.TipoUsuario;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,11 +10,10 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CriarUsuarioDto {
+public class CriarRestauranteDto {
     private String nome;
-    private String email;
-    private String cpf;
-    private String login;
-    private String senha;
-    private TipoUsuario tipoUsuario;
+    private String endereco;
+    private String tipoCozinha;
+    private String horarioFuncionamento;
+    private Long idDonoRestaurante;
 }

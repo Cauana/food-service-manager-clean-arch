@@ -1,6 +1,7 @@
-package com.adjt.food_service_manager_clean_arch.infra.database;
-
+package com.adjt.food_service_manager_clean_arch.infra.gateway;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import com.adjt.food_service_manager_clean_arch.core.domain.Usuario;
 import com.adjt.food_service_manager_clean_arch.core.gateway.UsuarioGateway;
@@ -31,10 +32,19 @@ public class UsuarioJpaGateway implements UsuarioGateway {
     }
 
 	@Override
-	public Optional<Usuario> buscarPorCpf(String cpf) {
-		Optional<UsuarioEntity> usuarioEntityOp = usuarioRepository.findByCpf(cpf);
-		var usuarioEntity = usuarioEntityOp.get();
-		var usuario = usuarioEntityMapper.toUsuario(usuarioEntity);
-		return Optional.of(usuario);
+	public Optional<Usuario> buscarPorId(Long id) {
+		Optional<UsuarioEntity> usuarioEntityOp = usuarioRepository.findById(id);
+		if (usuarioEntityOp.isPresent()) {
+			var usuarioEntity = usuarioEntityOp.get();
+			var usuario = usuarioEntityMapper.toUsuario(usuarioEntity);
+			return Optional.of(usuario);
+		}
+		return Optional.empty();
 	}
+
+    @Override
+    public List<Usuario> buscarTodosUsuarios() {
+        List<UsuarioEntity> entities = usuarioRepository.findAll();
+        return entities.stream().map(usuarioEntityMapper::toUsuario).collect(Collectors.toList());
+    }
 }
