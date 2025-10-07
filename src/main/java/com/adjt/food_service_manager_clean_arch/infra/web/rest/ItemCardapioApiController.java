@@ -4,9 +4,10 @@ import com.adjt.food_service_manager_clean_arch.core.domain.ItemCardapio;
 import com.adjt.food_service_manager_clean_arch.core.domain.Restaurante;
 import com.adjt.food_service_manager_clean_arch.core.dto.CriarItemCardapioDto;
 import com.adjt.food_service_manager_clean_arch.core.dto.RespostaItemCardapioDto;
-import com.adjt.food_service_manager_clean_arch.core.usecase.BuscarItemCardapioUseCaseImpl;
-import com.adjt.food_service_manager_clean_arch.core.usecase.CadastrarItemCardapioUseCaseImpl;
-import com.adjt.food_service_manager_clean_arch.core.usecase.ListarTodosItensCardapioUseCaseImpl;
+import com.adjt.food_service_manager_clean_arch.core.usecase.cardapio.BuscarItemCardapioUseCaseImpl;
+import com.adjt.food_service_manager_clean_arch.core.usecase.cardapio.CadastrarItemCardapioUseCaseImpl;
+import com.adjt.food_service_manager_clean_arch.core.usecase.cardapio.ListarTodosItensCardapioUseCaseImpl;
+
 import org.springframework.web.bind.annotation.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

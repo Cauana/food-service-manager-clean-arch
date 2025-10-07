@@ -1,6 +1,6 @@
 package com.adjt.food_service_manager_clean_arch.core.domain;
 
-import com.adjt.food_service_manager_clean_arch.core.enums.TipoUsuario;
+import java.util.List;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,7 +21,8 @@ public class Usuario {
     private String cpf;
     private String login;
     private String senha;
-    private TipoUsuario tipoUsuario;
+    private String tipoUsuario;
+    private List<Restaurante> restaurantes;
 }
 
 
