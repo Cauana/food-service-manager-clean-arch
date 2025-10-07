@@ -7,11 +7,11 @@ import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.Test;
 
+import com.adjt.food_service_manager_clean_arch.core.domain.TipoUsuario;
 import com.adjt.food_service_manager_clean_arch.core.domain.Usuario;
 import com.adjt.food_service_manager_clean_arch.core.dto.CriarUsuarioDto;
-import com.adjt.food_service_manager_clean_arch.core.enums.TipoUsuario;
 import com.adjt.food_service_manager_clean_arch.core.gateway.UsuarioGateway;
-import com.adjt.food_service_manager_clean_arch.core.usecase.CadastrarUsuarioUseCaseImpl;
+import com.adjt.food_service_manager_clean_arch.core.usecase.usuario.CadastrarUsuarioUseCaseImpl;
 
 public class CadastrarUsuarioUseCaseImplTest {
 
@@ -22,7 +22,7 @@ public class CadastrarUsuarioUseCaseImplTest {
         String cpf = "123.456.789-00";
         String login = "joaosilva";
         String senha = "senha123";
-        TipoUsuario tipoUsuario = TipoUsuario.CLIENTE;
+        TipoUsuario tipoUsuario = new TipoUsuario(1L, "Cliente", "Usuário comum");
 
         CriarUsuarioDto novoUsuario = CriarUsuarioDto.builder()
                 .nome(nome)
@@ -30,7 +30,7 @@ public class CadastrarUsuarioUseCaseImplTest {
                 .cpf(cpf)
                 .login(login)
                 .senha(senha)
-                .tipoUsuario(tipoUsuario)
+                .tipoUsuario(tipoUsuario.getNome())
                 .build();
 
         UsuarioGateway usuarioGateway = mock(UsuarioGateway.class);
@@ -41,7 +41,7 @@ public class CadastrarUsuarioUseCaseImplTest {
                         .cpf(cpf)
                         .login(login)
                         .senha(senha)
-                        .tipoUsuario(tipoUsuario)
+                        .tipoUsuario(tipoUsuario.getNome())
                         .build()
         );
         CadastrarUsuarioUseCaseImpl cadastrarUsuarioUseCase = new CadastrarUsuarioUseCaseImpl(usuarioGateway);
@@ -53,7 +53,7 @@ public class CadastrarUsuarioUseCaseImplTest {
         assert usuarioCriado.getCpf().equals(cpf);
         assert usuarioCriado.getLogin().equals(login);
         assert usuarioCriado.getSenha().equals(senha);
-        assert usuarioCriado.getTipoUsuario() == tipoUsuario;
+        assert usuarioCriado.getTipoUsuario().equals(tipoUsuario.getNome());
 
     }
 }

@@ -3,8 +3,8 @@ package com.adjt.core.domain;
 
 import org.junit.jupiter.api.Test;
 
+import com.adjt.food_service_manager_clean_arch.core.domain.TipoUsuario;
 import com.adjt.food_service_manager_clean_arch.core.domain.Usuario;
-import com.adjt.food_service_manager_clean_arch.core.enums.TipoUsuario;
 
 public class UsuarioTest {
 
@@ -15,7 +15,7 @@ public class UsuarioTest {
     String cpf = "123.456.789-00";
     String login = "joaosilva";
     String senha = "senha123";
-    TipoUsuario tipoUsuario = TipoUsuario.CLIENTE;
+    TipoUsuario tipoUsuario = new TipoUsuario(1L, "Administrador", "Usuário com privilégios administrativos");
 
     var usuario = Usuario.builder()
             .nome(nome)
@@ -23,7 +23,7 @@ public class UsuarioTest {
             .cpf(cpf)
             .login(login)
             .senha(senha)
-            .tipoUsuario(tipoUsuario)
+            .tipoUsuario(tipoUsuario.getNome())
             .build();
 
     assert usuario.getNome().equals(nome);
@@ -31,7 +31,7 @@ public class UsuarioTest {
     assert usuario.getCpf().equals(cpf);
     assert usuario.getLogin().equals(login);
     assert usuario.getSenha().equals(senha);
-    assert usuario.getTipoUsuario() == tipoUsuario;
+    assert usuario.getTipoUsuario().equals(tipoUsuario.getNome());
     }
 
 }
