@@ -63,6 +63,7 @@ public class TipoUsuarioApiController {
         return RespostaTipoUsuarioDto.builder()
                 .id(tipoUsuario.getId())
                 .nome(tipoUsuario.getNome())
+                .descricao(tipoUsuario.getDescricao())
                 .build();
 	}
 }
