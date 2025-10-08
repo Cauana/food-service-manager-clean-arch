@@ -16,7 +16,7 @@ public class BuscarUsuarioUseCaseImpl {
         if(id == null || id <= 0){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"ID de usuário inválido");
         }
-        return  usuarioGateway.buscarPorId(id).orElseThrow(() -> new ResourceNotFoundException("Usuário Não Encontrado"));
+        return  usuarioGateway.buscarPorId(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Usuário Não Encontrado"));
     }
 
 }
