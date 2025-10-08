@@ -5,6 +5,7 @@ import com.adjt.food_service_manager_clean_arch.core.exception.ResourceNotFoundE
 import com.adjt.food_service_manager_clean_arch.core.gateway.UsuarioGateway;
 import org.hibernate.type.descriptor.sql.internal.Scale6IntervalSecondDdlType;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -36,13 +37,14 @@ class BuscarUsuarioUseCaseImplTest {
                 .nome("Maria Silva")
                 .email("\"maria.silva@teste.com")
                 .login("mariasilva")
-                .cpf("123.456.789-00")
+                .cpf("12345678900")
                 .restaurantes(Collections.emptyList())
                 .build();
     }
 
     @Test
-    void deveriaBuscarUsuarioUseCaseImpl() {
+    @DisplayName("Deve buscar e retornar o usuário encontrado após uma busca por id")
+    void deveBuscarUsuarioPorId() {
         Long id = 1001L;
 
         when(usuarioGateway.buscarPorId(id)).thenReturn(Optional.of(usuarioMock));
@@ -57,13 +59,15 @@ class BuscarUsuarioUseCaseImplTest {
     }
 
 
-    void deveLancarExcecaoUsuarioNaoEncontrado() {
+    @Test
+    @DisplayName("Deve tentar buscar um usuário não cadastrado e lançar uma exceção quando ele não for encontrado.")
+    void deveLancarExcecaoQuandoUsuarioNaoForEncontrado() {
         Long id = 1002L;
         when(usuarioGateway.buscarPorId(id)).thenReturn(Optional.empty());
 
         ResourceNotFoundException  exception = assertThrows(ResourceNotFoundException.class,() -> buscarUsuarioUseCaseImpl.buscarUsuario(id));
 
-        assertEquals("Usuario Não Encontrado", exception.getMessage());
+        assertEquals("Usuário Não Encontrado", exception.getMessage());
 
         verify(usuarioGateway, times(1)).buscarPorId(id);
     }
