@@ -1,8 +1,4 @@
 package com.adjt.food_service_manager_clean_arch.core.dto;
-
-
-import com.adjt.food_service_manager_clean_arch.core.domain.TipoUsuario;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,11 +8,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CriarUsuarioDto {
-    private String nome;
-    private String email;
-    private String cpf;
+public class LoginRequestDto {
     private String login;
     private String senha;
-    private String tipoUsuario;
+    
 }

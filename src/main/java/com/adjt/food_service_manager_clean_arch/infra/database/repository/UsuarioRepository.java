@@ -4,7 +4,6 @@ import com.adjt.food_service_manager_clean_arch.infra.database.entity.UsuarioEnt
 import java.util.Optional;
 
 public interface UsuarioRepository extends JpaRepository<UsuarioEntity, Long> {
-
+    Optional<UsuarioEntity> findByLogin(String login);
     Optional<UsuarioEntity> findByCpf(String cpf);
-
 }
