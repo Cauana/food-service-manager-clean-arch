@@ -9,4 +9,5 @@ public interface TipoUsuarioGateway {
     TipoUsuario criarTipoUsuario(TipoUsuario tipoUsuario);
     Optional<TipoUsuario> buscarPorId(Long id);
     List<TipoUsuario> buscarTodosTiposUsuario();
+    TipoUsuario salvar(TipoUsuario existente);
 }
