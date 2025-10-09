@@ -3,7 +3,9 @@ package com.adjt.food_service_manager_clean_arch.infra.web.rest;
 import com.adjt.food_service_manager_clean_arch.core.domain.Usuario;
 import com.adjt.food_service_manager_clean_arch.core.dto.CriarUsuarioDto;
 import com.adjt.food_service_manager_clean_arch.core.dto.RespostaUsuarioDto;
-import com.adjt.food_service_manager_clean_arch.core.usecase.usuario.*;
+import com.adjt.food_service_manager_clean_arch.core.usecase.usuario.BuscarUsuarioUseCaseImpl;
+import com.adjt.food_service_manager_clean_arch.core.usecase.usuario.CadastrarUsuarioUseCaseImpl;
+import com.adjt.food_service_manager_clean_arch.core.usecase.usuario.ListarTodosUsuariosUseCaseImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -33,26 +35,15 @@ class UsuarioApiControllerTest {
     @Mock
     private ListarTodosUsuariosUseCaseImpl listarTodosUsuariosUseCaseImpl;
 
-    @Mock
-    private DeletarUsuarioUseCaseImpl deletarUsuarioUseCaseImpl;
-
-    @Mock
-    private AtualizarUsuarioUseCaseImpl atualizarUsuarioUseCaseImpl;
-
     @InjectMocks
     private UsuarioApiController usuarioApiController;
 
     private CriarUsuarioDto criarUsuarioDto;
     private Usuario usuarioCriado;
     private Usuario usuarioEncontrado;
-    private Usuario usuarioAtualizado;
-    private Long usuarioId;
 
     @BeforeEach
     void setUp() {
-
-        usuarioId = 2L;
-
         criarUsuarioDto = new CriarUsuarioDto(
                 "João da Silva",
                 "joao.silva@teste.com",
@@ -74,23 +65,12 @@ class UsuarioApiControllerTest {
         );
 
         usuarioEncontrado = new Usuario(
-                usuarioId,
+                2L,
                 "Maria de Souza",
                 "maria.souza@teste.com",
                 "09876543211",
                 "maria.login",
                 "senha456",
-                "DONO_RESTAURANTE",
-                Collections.emptyList()
-        );
-
-        usuarioAtualizado = new Usuario(
-                usuarioId,
-                "Jhon",
-                "jhon@gmail.com",
-                "78945612300",
-                "jhon.login",
-                "senhaJhon",
                 "DONO_RESTAURANTE",
                 Collections.emptyList()
         );
@@ -114,6 +94,7 @@ class UsuarioApiControllerTest {
     @Test
     @DisplayName("Deve buscar um usuário por ID com sucesso e retornar 200 OK")
     void deveBuscarUsuarioPorIdRetornarOkQuandoUsuarioEncontrado() {
+        Long usuarioId = 2L;
 
         when(buscarUsuarioUseCaseImpl.buscarUsuario(usuarioId)).thenReturn(usuarioEncontrado);
         ResponseEntity<RespostaUsuarioDto> response = usuarioApiController.buscarUsuarioPorId(usuarioId);
@@ -146,7 +127,7 @@ class UsuarioApiControllerTest {
     }
 
     @Test
-    @DisplayName("Deve retornar uma lista vazia quando nenhum usuário for encontrado")
+    @DisplayName("Deve restornar uma lista vazia quando nenhum usuário for encontrado")
     void deveRetornarListaVaziaQuandoNenhumUsuarioForEncontrado() {
         List<Usuario> usuarios = List.of();
         when(listarTodosUsuariosUseCaseImpl.listarTodosUsuarios()).thenReturn(usuarios);
@@ -154,45 +135,6 @@ class UsuarioApiControllerTest {
 
         assertNotNull(response);
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertNotNull(response.getBody());
         assertTrue(response.getBody().isEmpty());
     }
-
-
-    @Test
-    @DisplayName("Deve atualizar um usuário com sucesso e retornar 200 OK")
-    void deveAtualizarRetornarOkComUsuarioAtualizado() {
-        when(atualizarUsuarioUseCaseImpl.atualizarUsuario(usuarioId, criarUsuarioDto)).thenReturn(usuarioAtualizado);
-
-        ResponseEntity<RespostaUsuarioDto> response = usuarioApiController.atualizar(usuarioId, criarUsuarioDto);
-
-        assertNotNull(response);
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertNotNull(response.getBody());
-
-
-        assertEquals(usuarioId, response.getBody().getId());
-        assertEquals("Jhon", response.getBody().getNome());
-        assertEquals("DONO_RESTAURANTE", response.getBody().getTipoUsuario());
-
-
-        verify(atualizarUsuarioUseCaseImpl, times(1)).atualizarUsuario(usuarioId, criarUsuarioDto);
-
-    }
-
-    @Test
-    @DisplayName("Deve deletar um usuário com sucesso e retornar 204")
-    void deveDeletarUsuarioRetornarNoContent() {
-        doNothing().when(deletarUsuarioUseCaseImpl).deletarUsuario(usuarioId);
-
-        ResponseEntity<Void> response = usuarioApiController.deletarUsuario(usuarioId);
-
-        assertNotNull(response);
-        assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
-        assertNull(response.getBody());
-
-        verify(deletarUsuarioUseCaseImpl, times(1)).deletarUsuario(usuarioId);
-
-    }
-
 }

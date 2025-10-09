@@ -37,7 +37,6 @@ class RestauranteApiControllerTest {
     @Mock
     private ListarTodosRestaurantesUseCaseImpl listarTodosRestaurantesUseCaseImpl;
 
-
     @InjectMocks
     private RestauranteApiController restauranteApiController;
 
