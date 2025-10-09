@@ -10,4 +10,5 @@ public interface TipoUsuarioGateway {
     Optional<TipoUsuario> buscarPorId(Long id);
     List<TipoUsuario> buscarTodosTiposUsuario();
     TipoUsuario salvar(TipoUsuario existente);
+    void deletar(TipoUsuario tipoUsuario);
 }
