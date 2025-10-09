@@ -10,10 +10,7 @@ import com.adjt.food_service_manager_clean_arch.core.dto.RespostaTipoUsuarioDto;
 import com.adjt.food_service_manager_clean_arch.core.usecase.restaurante.BuscarRestauranteUseCaseImpl;
 import com.adjt.food_service_manager_clean_arch.core.usecase.restaurante.CadastrarRestauranteUseCaseImpl;
 import com.adjt.food_service_manager_clean_arch.core.usecase.restaurante.ListarTodosRestaurantesUseCaseImpl;
-import com.adjt.food_service_manager_clean_arch.core.usecase.tipousuario.BuscarTipoUsuarioUseCaseImpl;
-import com.adjt.food_service_manager_clean_arch.core.usecase.tipousuario.ListarTodosTiposUsuarioUseCase;
-import com.adjt.food_service_manager_clean_arch.core.usecase.tipousuario.ListarTodosTiposUsuarioUseCaseImpl;
-import com.adjt.food_service_manager_clean_arch.core.usecase.tipousuario.TipoUsuarioUseCaseImpl;
+import com.adjt.food_service_manager_clean_arch.core.usecase.tipousuario.*;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -32,6 +29,7 @@ public class TipoUsuarioApiController {
     private final TipoUsuarioUseCaseImpl cadastrarTipoUsuarioController;
     private final ListarTodosTiposUsuarioUseCaseImpl listarTodosTiposUsuarioController;
     private final BuscarTipoUsuarioUseCaseImpl buscarTipoUsuarioController;
+    private final AtualizarTipoUsuarioUseCaseImpl atualizarTipoUsuarioController;
 
     @PostMapping
     public ResponseEntity<RespostaTipoUsuarioDto> criarTipoUsuario(@RequestBody CriarTipoUsuarioDto tipoUsuarioDto) {
@@ -55,13 +53,21 @@ public class TipoUsuarioApiController {
         return ResponseEntity.ok(map(tipoUsuario));
     }
 
-    // public RespostaTipoUsuarioDto map(TipoUsuario tipoUsuario) {
-    //     if(tipoUsuario == null) return null;
-    //     return RespostaTipoUsuarioDto.builder()
-    //             .id(tipoUsuario.getId())
-    //             .nome(tipoUsuario.getNome())
-    //             .build();
-    // }
+    @PutMapping("/{id}")
+    public ResponseEntity<RespostaTipoUsuarioDto> atualizar(
+            @PathVariable Long id,
+            @RequestBody CriarTipoUsuarioDto tipoUsuarioDto
+    ){
+        TipoUsuario tipoUsuario = new TipoUsuario();
+        tipoUsuario.setNome(tipoUsuarioDto.getNome());
+        tipoUsuario.setDescricao(tipoUsuarioDto.getDescricao());
+
+        TipoUsuario atualizado = atualizarTipoUsuarioController.atualizar(id, tipoUsuario);
+        log.info("Tipo de Usuário atualizado: {}, id: {}", atualizado.getDescricao(), atualizado.getId());
+        return ResponseEntity.ok(map(atualizado));
+    }
+
+
 
     public RespostaTipoUsuarioDto map(TipoUsuario tipoUsuario) {
         if(tipoUsuario == null) return null;
