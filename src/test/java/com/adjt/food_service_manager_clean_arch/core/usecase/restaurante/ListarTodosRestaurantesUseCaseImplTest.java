@@ -39,7 +39,7 @@ class ListarTodosRestaurantesUseCaseImplTest {
     void deveRetornarTodosRestaurantesEncontrados() {
         when(restauranteGateway.buscarTodosRestaurantes()).thenReturn(listaRestaurantes);
 
-        List<Restaurante> restaurantesEncontrados = listarTodosRestaurantesUseCaseImpl.buscarTodosRestaurantes();
+        List<Restaurante> restaurantesEncontrados = listarTodosRestaurantesUseCaseImpl.listarTodosRestaurantes();
 
         assertNotNull(restaurantesEncontrados);
         assertFalse(restaurantesEncontrados.isEmpty());
@@ -54,7 +54,7 @@ class ListarTodosRestaurantesUseCaseImplTest {
         when(restauranteGateway.buscarTodosRestaurantes())
                 .thenReturn(Collections.emptyList());
 
-        List<Restaurante> restaurantesEncontrados = listarTodosRestaurantesUseCaseImpl.buscarTodosRestaurantes();
+        List<Restaurante> restaurantesEncontrados = listarTodosRestaurantesUseCaseImpl.listarTodosRestaurantes();
 
         assertNotNull(restaurantesEncontrados);
         assertTrue(restaurantesEncontrados.isEmpty());

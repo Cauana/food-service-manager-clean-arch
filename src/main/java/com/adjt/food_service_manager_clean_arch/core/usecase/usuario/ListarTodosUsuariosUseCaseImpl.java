@@ -11,7 +11,7 @@ public class ListarTodosUsuariosUseCaseImpl {
 
     private final UsuarioGateway usuarioGateway;
 
-    public List<Usuario> buscarTodosUsuarios(){
+    public List<Usuario> listarTodosUsuarios(){
         return usuarioGateway.buscarTodosUsuarios();
     }
 }

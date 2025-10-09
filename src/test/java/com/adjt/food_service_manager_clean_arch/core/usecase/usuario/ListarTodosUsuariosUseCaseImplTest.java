@@ -40,7 +40,7 @@ class ListarTodosUsuariosUseCaseImplTest {
     void deveRetornarTodosUsuariosQuandoEncontrados() {
         when(usuarioGateway.buscarTodosUsuarios()).thenReturn(listaUsuarios);
 
-        List<Usuario> usuariosEncontrados = listarTodosUsuariosUseCaseImpl.buscarTodosUsuarios();
+        List<Usuario> usuariosEncontrados = listarTodosUsuariosUseCaseImpl.listarTodosUsuarios();
 
         assertNotNull(usuariosEncontrados);
         assertFalse(usuariosEncontrados.isEmpty());
@@ -50,12 +50,12 @@ class ListarTodosUsuariosUseCaseImplTest {
 
     @Test
     @DisplayName("Deve retornar uma lista vazia quando nenhum usuário é encontrado")
-    void listarTodosUsuarios_DeveRetornarListaVazia_QuandoNaoHouverDados() {
+    void DeveRetornarListaVaziaQuandoNaoHouverDados() {
 
         when(usuarioGateway.buscarTodosUsuarios())
                 .thenReturn(Collections.emptyList());
 
-        List<Usuario> usuariosEncontrados = listarTodosUsuariosUseCaseImpl.buscarTodosUsuarios();
+        List<Usuario> usuariosEncontrados = listarTodosUsuariosUseCaseImpl.listarTodosUsuarios();
 
         assertNotNull(usuariosEncontrados);
         assertTrue(usuariosEncontrados.isEmpty());

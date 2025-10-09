@@ -37,7 +37,7 @@ public class ItemCardapioApiController {
 
     @GetMapping
     public ResponseEntity<List<RespostaItemCardapioDto>> listarItensCardapio() {
-        List<ItemCardapio> itensCardapio = listarItemCardapioController.buscarTodosItemCardapioUseCase();
+        List<ItemCardapio> itensCardapio = listarItemCardapioController.listarTodosItemCardapioUseCase();
         log.info("Listando todos os Itens do Cardápio !");
         List<RespostaItemCardapioDto> respostaItemCardapioDtos = itensCardapio.stream().map(this::map).toList();
         return ResponseEntity.ok(respostaItemCardapioDtos);

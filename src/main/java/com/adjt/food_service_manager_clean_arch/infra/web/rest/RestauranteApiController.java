@@ -36,7 +36,7 @@ public class RestauranteApiController {
 
     @GetMapping
     public ResponseEntity<List<RespostaRestauranteDto>> listarRestaurantes() {
-        List<Restaurante> restaurantes = listarTodosRestaurantesController.buscarTodosRestaurantes();
+        List<Restaurante> restaurantes = listarTodosRestaurantesController.listarTodosRestaurantes();
         log.info("Listando todos os Restaurante!");
         List<RespostaRestauranteDto> respostaRestauranteDtos = restaurantes.stream().map(this::map).toList();
         return ResponseEntity.ok(respostaRestauranteDtos);
