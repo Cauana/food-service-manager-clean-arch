@@ -10,6 +10,7 @@ import com.adjt.food_service_manager_clean_arch.core.dto.RespostaTipoUsuarioDto;
 import com.adjt.food_service_manager_clean_arch.core.usecase.restaurante.BuscarRestauranteUseCaseImpl;
 import com.adjt.food_service_manager_clean_arch.core.usecase.restaurante.CadastrarRestauranteUseCaseImpl;
 import com.adjt.food_service_manager_clean_arch.core.usecase.restaurante.ListarTodosRestaurantesUseCaseImpl;
+import com.adjt.food_service_manager_clean_arch.core.usecase.tipousuario.BuscarTipoUsuarioUseCaseImpl;
 import com.adjt.food_service_manager_clean_arch.core.usecase.tipousuario.ListarTodosTiposUsuarioUseCase;
 import com.adjt.food_service_manager_clean_arch.core.usecase.tipousuario.ListarTodosTiposUsuarioUseCaseImpl;
 import com.adjt.food_service_manager_clean_arch.core.usecase.tipousuario.TipoUsuarioUseCaseImpl;
@@ -30,6 +31,7 @@ public class TipoUsuarioApiController {
 
     private final TipoUsuarioUseCaseImpl cadastrarTipoUsuarioController;
     private final ListarTodosTiposUsuarioUseCaseImpl listarTodosTiposUsuarioController;
+    private final BuscarTipoUsuarioUseCaseImpl buscarTipoUsuarioController;
 
     @PostMapping
     public ResponseEntity<RespostaTipoUsuarioDto> criarTipoUsuario(@RequestBody CriarTipoUsuarioDto tipoUsuarioDto) {
@@ -46,12 +48,12 @@ public class TipoUsuarioApiController {
          List<RespostaTipoUsuarioDto> respostaTipoUsuarioDtos = tiposUsuario.stream().map(this::map).toList();
          return ResponseEntity.ok(respostaTipoUsuarioDtos);
      }
-    // @GetMapping("/{id}")
-    // public ResponseEntity<RespostaTipoUsuarioDto> buscarPorId(@PathVariable Long id) {
-    //     TipoUsuario tipoUsuario = buscarTipoUsuarioController.buscarTipoUsuario(id);
-    //     log.info("Tipo de Usuário encontrado: {}, id:", tipoUsuario.getId());
-    //     return ResponseEntity.ok(map(tipoUsuario));
-    // }
+     @GetMapping("/{id}")
+     public ResponseEntity<RespostaTipoUsuarioDto> buscarPorId(@PathVariable Long id) {
+         TipoUsuario tipoUsuario = buscarTipoUsuarioController.buscarPorId(id);
+        log.info("Tipo de Usuário encontrado: {}, id:", tipoUsuario.getId());
+        return ResponseEntity.ok(map(tipoUsuario));
+    }
 
     // public RespostaTipoUsuarioDto map(TipoUsuario tipoUsuario) {
     //     if(tipoUsuario == null) return null;
