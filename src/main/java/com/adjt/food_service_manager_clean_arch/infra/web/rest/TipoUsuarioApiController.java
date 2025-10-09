@@ -7,6 +7,7 @@ import com.adjt.food_service_manager_clean_arch.core.dto.CriarRestauranteDto;
 import com.adjt.food_service_manager_clean_arch.core.dto.CriarTipoUsuarioDto;
 import com.adjt.food_service_manager_clean_arch.core.dto.RespostaRestauranteDto;
 import com.adjt.food_service_manager_clean_arch.core.dto.RespostaTipoUsuarioDto;
+import com.adjt.food_service_manager_clean_arch.core.gateway.TipoUsuarioGateway;
 import com.adjt.food_service_manager_clean_arch.core.usecase.restaurante.BuscarRestauranteUseCaseImpl;
 import com.adjt.food_service_manager_clean_arch.core.usecase.restaurante.CadastrarRestauranteUseCaseImpl;
 import com.adjt.food_service_manager_clean_arch.core.usecase.restaurante.ListarTodosRestaurantesUseCaseImpl;
@@ -17,6 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -30,6 +32,7 @@ public class TipoUsuarioApiController {
     private final ListarTodosTiposUsuarioUseCaseImpl listarTodosTiposUsuarioController;
     private final BuscarTipoUsuarioUseCaseImpl buscarTipoUsuarioController;
     private final AtualizarTipoUsuarioUseCaseImpl atualizarTipoUsuarioController;
+    private final DeletarTipoUsuarioUseCaseImpl deletarTipoUsuarioUseCase;
 
     @PostMapping
     public ResponseEntity<RespostaTipoUsuarioDto> criarTipoUsuario(@RequestBody CriarTipoUsuarioDto tipoUsuarioDto) {
@@ -65,6 +68,12 @@ public class TipoUsuarioApiController {
         TipoUsuario atualizado = atualizarTipoUsuarioController.atualizar(id, tipoUsuario);
         log.info("Tipo de Usuário atualizado: {}, id: {}", atualizado.getDescricao(), atualizado.getId());
         return ResponseEntity.ok(map(atualizado));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void>deletar(@PathVariable Long id){
+        deletarTipoUsuarioUseCase.deletar(id);
+        return ResponseEntity.noContent().build();
     }
 
 
