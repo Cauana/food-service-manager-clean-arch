@@ -19,10 +19,12 @@ public class CadastrarRestauranteUseCaseImpl {
 
     public Restaurante criarRestaurante(CriarRestauranteDto novoRestaurante, HttpSession session) {
         Usuario dono = usuarioGateway.buscarPorId(novoRestaurante.getIdDonoRestaurante())
-                        .orElseThrow(() -> new RuntimeException("Usuário dono não encontrado"));
+                        .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Usuário dono não encontrado"));
+
+        Object tipoUsuarioObj = session.getAttribute("tipoUsuario");
 
         //validação dono restaurante
-        if(!session.getAttribute("tipoUsuario").equals("DONO_RESTAURANTE")) {
+        if(tipoUsuarioObj == null || !"DONO_RESTAURANTE".equals(tipoUsuarioObj.toString())) {
             throw new ResponseStatusException(
                     HttpStatus.BAD_REQUEST,
                     "Somente usuários do tipo DONO_RESTAURANTE é possível realizar o cadastro de restaurante");
