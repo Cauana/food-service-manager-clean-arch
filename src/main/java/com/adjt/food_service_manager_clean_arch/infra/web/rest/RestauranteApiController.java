@@ -4,10 +4,7 @@ import com.adjt.food_service_manager_clean_arch.core.domain.Restaurante;
 import com.adjt.food_service_manager_clean_arch.core.domain.Usuario;
 import com.adjt.food_service_manager_clean_arch.core.dto.CriarRestauranteDto;
 import com.adjt.food_service_manager_clean_arch.core.dto.RespostaRestauranteDto;
-import com.adjt.food_service_manager_clean_arch.core.usecase.restaurante.AtualizarRestauranteUseCaseImpl;
-import com.adjt.food_service_manager_clean_arch.core.usecase.restaurante.BuscarRestauranteUseCaseImpl;
-import com.adjt.food_service_manager_clean_arch.core.usecase.restaurante.CadastrarRestauranteUseCaseImpl;
-import com.adjt.food_service_manager_clean_arch.core.usecase.restaurante.ListarTodosRestaurantesUseCaseImpl;
+import com.adjt.food_service_manager_clean_arch.core.usecase.restaurante.*;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -28,6 +25,7 @@ public class RestauranteApiController {
     private final BuscarRestauranteUseCaseImpl buscarRestauranteController;
     private final ListarTodosRestaurantesUseCaseImpl listarTodosRestaurantesController;
     private final AtualizarRestauranteUseCaseImpl atualizarRestauranteController;
+    private final DeletarRestauranteUseCaseImpl deletarRestauranteController;
 
     @PostMapping
     public ResponseEntity<RespostaRestauranteDto> criarRestaurante(@RequestBody CriarRestauranteDto restauranteDto, HttpSession session) {
@@ -58,6 +56,14 @@ public class RestauranteApiController {
         Restaurante atualizado = atualizarRestauranteController.atualizarRestaurante(id,restauranteDto);
         log.info("Restaurante atualizado: ID={}, nome={}", atualizado.getId(),atualizado.getNome());
         return ResponseEntity.ok(map(atualizado));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> map(@PathVariable Long id){
+        deletarRestauranteController.deletarRestaurante(id);
+        log.info("Restaurante com ID {} foi deletado.", id);
+        return ResponseEntity.noContent().build();
+
     }
 
     public RespostaRestauranteDto map(Restaurante restaurante) {
