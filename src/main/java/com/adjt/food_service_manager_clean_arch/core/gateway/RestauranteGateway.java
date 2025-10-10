@@ -10,4 +10,5 @@ public interface RestauranteGateway {
     Restaurante salvar(Restaurante restaurante);
     Optional<Restaurante> buscarPorId(Long id);
     List<Restaurante> buscarTodosRestaurantes();
+    void deletar(Restaurante restaurante);
 }
