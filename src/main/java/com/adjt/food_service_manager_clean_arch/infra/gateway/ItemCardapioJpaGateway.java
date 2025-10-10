@@ -31,6 +31,11 @@ public class ItemCardapioJpaGateway implements ItemCardapioGateway {
     }
 
     @Override
+    public void deletar(ItemCardapio item) {
+        repository.delete(mapper.toEntity(item));
+    }
+
+    @Override
     public Optional<ItemCardapio> buscarPorId(Long id) {
         return repository.findById(id)
                          .map(entity -> mapper.toItemCardapio(entity));
