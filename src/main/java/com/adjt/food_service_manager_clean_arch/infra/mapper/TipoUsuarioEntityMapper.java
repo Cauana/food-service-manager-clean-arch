@@ -29,4 +29,15 @@ public class TipoUsuarioEntityMapper {
                 .build();
     }
 
+    public TipoUsuario toDomain(TipoUsuarioEntity entity) {
+        if(entity == null){
+            return null;
+        }
+
+        TipoUsuario tipoUsuario = new TipoUsuario();
+        tipoUsuario.setId(entity.getId());
+        tipoUsuario.setNome(entity.getNome());
+        tipoUsuario.setDescricao(entity.getDescricao());
+        return tipoUsuario;
+    }
 }

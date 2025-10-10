@@ -31,6 +31,11 @@ public class UsuarioJpaGateway implements UsuarioGateway {
         }
     }
 
+    @Override
+    public Usuario salvar(Usuario usuario){
+        return criar(usuario);
+    }
+
 	@Override
 	public Optional<Usuario> buscarPorId(Long id) {
 		Optional<UsuarioEntity> usuarioEntityOp = usuarioRepository.findById(id);
@@ -63,4 +68,10 @@ public class UsuarioJpaGateway implements UsuarioGateway {
     public Optional<Usuario> buscarPorCpf(String cpf){
         return usuarioRepository.findByCpf(cpf).map(usuarioEntityMapper::toUsuario);
     }
+
+    @Override
+    public void deletar(Usuario usuario){
+        usuarioRepository.delete(usuarioEntityMapper.toEntity(usuario));
+    }
+
 }

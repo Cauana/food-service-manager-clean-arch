@@ -41,4 +41,15 @@ public class TipoUsuarioJpaGateway implements TipoUsuarioGateway {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public TipoUsuario salvar(TipoUsuario tipoUsuario) {
+        return mapper.toDomain(repository.save(mapper.toEntity(tipoUsuario)));
+    }
+
+    @Override
+    public void deletar(TipoUsuario tipoUsuario) {
+        repository.delete(mapper.toEntity(tipoUsuario));
+    }
+
+
 }
