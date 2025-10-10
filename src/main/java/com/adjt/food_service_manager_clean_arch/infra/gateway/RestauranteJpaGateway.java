@@ -28,7 +28,12 @@ public class RestauranteJpaGateway implements RestauranteGateway {
         return mapper.toRestaurante(entity);
     }
 
-	@Override
+    @Override
+    public Restaurante salvar(Restaurante restaurante) {
+        return criarRestaurante(restaurante);
+    }
+
+    @Override
 	public Optional<Restaurante> buscarPorId(Long id) {
 		Optional<RestauranteEntity> restauranteEntityOp = repository.findById(id);
 		if (restauranteEntityOp.isPresent()) {
