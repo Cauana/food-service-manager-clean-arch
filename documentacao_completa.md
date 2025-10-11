@@ -35,12 +35,6 @@ O objetivo é **unificar a administração de múltiplos estabelecimentos** e of
 - **Dados iniciais:** tipos de usuário “Dono de restaurante” e “Cliente”  
 - **Configuração:** via variáveis de ambiente (`.env`) e `application.properties`
 
-#### Acesso ao banco no terminal:
-```bash
-psql -h localhost -U root -d food-service-manager
-```
-
----
 
 ### 💻 Backend
 
@@ -55,7 +49,14 @@ psql -h localhost -U root -d food-service-manager
 docker-compose up -d
 ```
 
+
+#### Acesso ao banco no terminal:
+```bash
+psql -h localhost -U root -d food-service-manager
+```
+
 ---
+
 
 ## 🧱 3. Clean Architecture no Food Service Manager
 
