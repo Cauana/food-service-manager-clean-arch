@@ -59,10 +59,10 @@ public class UsuarioApiController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletarUsuario(@PathVariable Long id){
+    public ResponseEntity<String> deletarUsuario(@PathVariable Long id){
         deletarUsuarioUseCase.deletarUsuario(id);
-        log.info("Usuário deletado com ID: ", id);
-        return ResponseEntity.noContent().build();
+        log.info("Usuário deletado com ID: {}", id);
+        return ResponseEntity.ok("Usuário deletado com sucesso!");
     }
 
     public RespostaUsuarioDto map(Usuario usuario) {

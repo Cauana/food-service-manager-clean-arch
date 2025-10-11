@@ -71,9 +71,9 @@ public class ItemCardapioApiController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletarItem(@PathVariable Long id, HttpSession session){
+    public ResponseEntity<String> deletarItem(@PathVariable Long id, HttpSession session){
         deletarItemCardapioUseController.deletar(id,session);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok("Item do cardápio deletado com sucesso!");
     }
 
     public RespostaItemCardapioDto map(ItemCardapio itemCardapio) {
