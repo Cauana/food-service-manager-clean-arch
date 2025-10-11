@@ -7,6 +7,8 @@ import com.adjt.food_service_manager_clean_arch.core.domain.Restaurante;
 
 public interface RestauranteGateway {
     Restaurante criarRestaurante(Restaurante restaurante);
+    Restaurante salvar(Restaurante restaurante);
     Optional<Restaurante> buscarPorId(Long id);
     List<Restaurante> buscarTodosRestaurantes();
+    void deletar(Restaurante restaurante);
 }

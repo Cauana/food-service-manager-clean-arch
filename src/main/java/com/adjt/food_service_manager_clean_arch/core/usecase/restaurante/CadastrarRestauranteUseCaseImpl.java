@@ -22,17 +22,27 @@ public class CadastrarRestauranteUseCaseImpl {
                         .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Usuário dono não encontrado"));
 
         Object tipoUsuarioObj = session.getAttribute("tipoUsuario");
+        Object cpfUsuarioObj = session.getAttribute("cpfUsuario");
+
+        //verifica se sessão é válida e do tipo correto
+        if(tipoUsuarioObj == null || !"DONO_RESTAURANTE".equals(tipoUsuarioObj.toString())){
+            throw new ResponseStatusException(
+                    HttpStatus.FORBIDDEN,
+                    "Somente usuários do tipo DONO_RESTAURANTE podem cadastrar restaurantes."
+            );
+        }
 
         //validação dono restaurante
-        if(tipoUsuarioObj == null || !"DONO_RESTAURANTE".equals(tipoUsuarioObj.toString())) {
+        if(tipoUsuarioObj == null || !dono.getCpf().equals(cpfUsuarioObj.toString())) {
             throw new ResponseStatusException(
-                    HttpStatus.BAD_REQUEST,
-                    "Somente usuários do tipo DONO_RESTAURANTE é possível realizar o cadastro de restaurante");
+                    HttpStatus.FORBIDDEN,
+                    "Usuário logado não corresponde ao dono do restaurante informado.");
         }
-        return restauranteGateway.criarRestaurante(map(novoRestaurante, dono));
+        Restaurante novo = map(novoRestaurante, dono);
+        return restauranteGateway.criarRestaurante(novo);
     }
 
-    public Restaurante map(CriarRestauranteDto dto, Usuario dono) {
+    private Restaurante map(CriarRestauranteDto dto, Usuario dono) {
 
 		return Restaurante.builder()
 				.nome(dto.getNome())

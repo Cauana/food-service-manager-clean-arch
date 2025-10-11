@@ -12,6 +12,8 @@ import com.adjt.food_service_manager_clean_arch.core.gateway.RestauranteGateway;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 
+
+
 @RequiredArgsConstructor
 public class CadastrarItemCardapioUseCaseImpl {
     private final ItemCardapioGateway itemCardapioGateway;
@@ -19,18 +21,32 @@ public class CadastrarItemCardapioUseCaseImpl {
 
     public ItemCardapio criarItemCardapio(CriarItemCardapioDto item, HttpSession session) {
         Restaurante restaurante = restauranteGateway.buscarPorId(item.getIdRestaurante())
-                .orElseThrow(() -> new RuntimeException("Restaurante não encontrado"));
-        ItemCardapio novoItem = map(item, restaurante);
-        //validação dono restaurante
-        if(!session.getAttribute("tipoUsuario").equals("DONO_RESTAURANTE") || !novoItem.getRestaurante().getDonoRestaurante().getCpf().equals(session.getAttribute("cpfUsuario"))) {
-            throw new ResponseStatusException(
-                    HttpStatus.BAD_REQUEST,
-                    "Somente usuários do tipo DONO_RESTAURANTE é possível realizar o cadastro de restaurante");
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND, "Restaurante não encontrado"));
+
+
+        Object tipoUsuarioObj = session.getAttribute("tipoUsuario");
+        Object cpfUsuarioObj = session.getAttribute("cpfUsuario");
+
+        //verifica usuário na sessão
+        if (tipoUsuarioObj == null || cpfUsuarioObj == null) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Usuário não autenticado na sessão");
         }
+
+        //verifica tipo de usuário
+        String tipoUsuario = tipoUsuarioObj.toString();
+        String cpfUsuario = cpfUsuarioObj.toString();
+
+        if (!"DONO_RESTAURANTE".equals(tipoUsuario) || !restaurante.getDonoRestaurante().getCpf().equals(cpfUsuario)) {
+            throw new ResponseStatusException(
+                    HttpStatus.FORBIDDEN,
+                    "Somente o perfil DONO_RESTAURANTE pode cadastrar itens de cardápio.");
+        }
+        ItemCardapio novoItem = map(item, restaurante);
         return itemCardapioGateway.criarItemCardapio(novoItem);
     }
 
-    public ItemCardapio map(CriarItemCardapioDto item, Restaurante restaurante) {
+    private ItemCardapio map(CriarItemCardapioDto item, Restaurante restaurante) {
         ItemCardapio itemCardapio = ItemCardapio.builder()
                 .nome(item.getNome())
                 .descricao(item.getDescricao())

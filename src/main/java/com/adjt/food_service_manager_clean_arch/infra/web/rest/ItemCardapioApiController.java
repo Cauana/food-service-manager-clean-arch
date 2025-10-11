@@ -4,9 +4,7 @@ import com.adjt.food_service_manager_clean_arch.core.domain.ItemCardapio;
 import com.adjt.food_service_manager_clean_arch.core.domain.Restaurante;
 import com.adjt.food_service_manager_clean_arch.core.dto.CriarItemCardapioDto;
 import com.adjt.food_service_manager_clean_arch.core.dto.RespostaItemCardapioDto;
-import com.adjt.food_service_manager_clean_arch.core.usecase.cardapio.BuscarItemCardapioUseCaseImpl;
-import com.adjt.food_service_manager_clean_arch.core.usecase.cardapio.CadastrarItemCardapioUseCaseImpl;
-import com.adjt.food_service_manager_clean_arch.core.usecase.cardapio.ListarTodosItensCardapioUseCaseImpl;
+import com.adjt.food_service_manager_clean_arch.core.usecase.cardapio.*;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -27,6 +25,8 @@ public class ItemCardapioApiController {
     private final CadastrarItemCardapioUseCaseImpl itemCardapioController;
     private final BuscarItemCardapioUseCaseImpl buscarItemCardapioController;
     private final ListarTodosItensCardapioUseCaseImpl listarItemCardapioController;
+    private final AtualizarItemCardapioUseCaseImpl atualizarItemCardapioController;
+    private final DeletarItemCardapioUseCaseImpl deletarItemCardapioUseController;
 
     @PostMapping
     public ResponseEntity<RespostaItemCardapioDto> criarItemCardapio(@RequestBody CriarItemCardapioDto itemCardapioDto, HttpSession session) {
@@ -47,6 +47,23 @@ public class ItemCardapioApiController {
         ItemCardapio itemCardapio = buscarItemCardapioController.buscarItemCardapio(id);
         log.info("Item do cardápio encontrado: {}, id:", itemCardapio.getId());
         return ResponseEntity.ok(map(itemCardapio));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<RespostaItemCardapioDto> atualizarItemCardapio(
+            @PathVariable Long id,
+            @RequestBody CriarItemCardapioDto itemCardapioDto,
+            HttpSession session
+    ){
+        ItemCardapio atualizado = atualizarItemCardapioController.atualizar(id, itemCardapioDto, session);
+        log.info("Item do cardápio atualizado: ID:{}, Nome={}",atualizado.getId(),atualizado.getNome());
+        return ResponseEntity.ok(map(atualizado));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletarItem(@PathVariable Long id, HttpSession session){
+        deletarItemCardapioUseController.deletar(id,session);
+        return ResponseEntity.noContent().build();
     }
 
     public RespostaItemCardapioDto map(ItemCardapio itemCardapio) {
