@@ -7,16 +7,14 @@ Ele tem como objetivo a criação de um sistema de gestão para um grupo de rest
 
 - [Sobre o Projeto](#sobre-o-projeto)
 - [Tecnologias](#tecnologias)
-- [Arquitetura](#arquitetura)
 - [Configuração do Ambiente](#configuração-do-ambiente)
 - [API Endpoints](#api-endpoints)
 - [Documentação da API](#documentação-da-api)
 
 ## Sobre o Projeto
 
-O **Food Service Manager** é uma API REST desenvolvida para gerenciar operações de restaurantes. O objetivo é desenvolver um Backend completo e robusto utilizando o framework Spring Boot. 
-O sistema permitirá que os restaurantes gerenciem suas operações, enquanto os clientes poderão consultar informações, fazer pedidos e deixar avaliações. 
-A entrega do projeto será realizada em fases, para garantir um desenvolvimento escalável através do aprendizado contínuo no curso da pós graduação.
+O Food Service Manager é um sistema de gestão para restaurantes, permitindo o cadastro de usuários, restaurantes, itens de cardápio e tipos de usuários.
+O objetivo é unificar a administração de múltiplos estabelecimentos e oferecer uma base para expansão futura com pedidos e avaliações de clientes.
 
 ## Tecnologias
 
@@ -24,8 +22,6 @@ A entrega do projeto será realizada em fases, para garantir um desenvolvimento 
 - **Java 21** - Linguagem de programação
 - **Spring Boot** - Framework web
 - **Spring Data JPA** - Persistência de dados
-- **Spring Validation** - Validação de dados
-- **Hibernate** - ORM
 - **PostgreSQL** - Banco de dados
 - **Lombok** - Redução de boilerplate
 
@@ -33,8 +29,6 @@ A entrega do projeto será realizada em fases, para garantir um desenvolvimento 
 - **Docker & Docker Compose** - Containerização
 - **Maven** - Gerenciamento de dependências
 - **Swagger/OpenAPI** - Documentação da API
-
-## Arquitetura
 
 
 ## Configuração do Ambiente
@@ -66,16 +60,16 @@ docker-compose logs -f app
 - **Swagger UI**: http://localhost:8080/swagger-ui.html
 - **PostgreSQL**: localhost:5432
 
-## API Endpoints
-
-### Usuários
-
-### Autenticação
+para rodar no terminal:
+psql -h localhost -U root -d food-service-manager   
 
 
-### Exemplo de Requisição
 
 ## Documentação da API
+
+### Documentação completa
+
+arquivo: documentacao_completa.md
 
 A documentação completa da API está disponível via **Swagger UI**:
 
@@ -84,11 +78,13 @@ A documentação completa da API está disponível via **Swagger UI**:
 
 ### Collection do Postman
 
+arquivo: Collection Tech Challenge Clean Arch.json
+
+
 
 ## Equipe
 
 - **Desenvolvedora**: Cauana Dias Costa
-- **Desenvolvedor**: Fabiano Meirellis Dolzanes
 - **Desenvolvedor**: Ivan Domingos Moreira
 - **Desenvolvedor**: Jociel Alves de Jesus
 - **Desenvolvedor**: Wellington Feijó da Costa
