@@ -1,213 +1,1591 @@
-type: collection.insomnia.rest/5.0
-name: Insomina Collection Tech Challenge Clean Arch
-meta:
-  id: wrk_b38c9897b085461cb78f7ebe39f72cc6
-  created: 1759871014755
-  modified: 1759873114124
-collection:
-  - url: http://localhost:8080/usuarios
-    name: Criar Usuario dono restaurante
-    meta:
-      id: req_35b50d23379b4bfb8cbf9bf4455c5939
-      created: 1759871028240
-      modified: 1759872970172
-      isPrivate: false
-      sortKey: -1759871028240
-    method: POST
-    body:
-      mimeType: application/json
-      text: |-
-        {
-          "nome": "ale",
-          "email": "ale.dias@hotmail.com",
-          "cpf": "43086057840",
-          "login": "ale",
-          "senha": "123",
-          "tipoUsuario": "DONO_RESTAURANTE"
-        }
-    headers:
-      - name: Content-Type
-        value: application/json
-      - name: User-Agent
-        value: insomnia/11.0.1
-    settings:
-      renderRequestBody: true
-      encodeUrl: true
-      followRedirects: global
-      cookies:
-        send: true
-        store: true
-      rebuildPath: true
-  - url: http://localhost:8080/restaurante
-    name: Criar Restaurante deslogado
-    meta:
-      id: req_9adf2c2d855a43e09d8e8a4ac0e03515
-      created: 1759871202675
-      modified: 1759872655352
-      isPrivate: false
-      sortKey: -1759871028140
-    method: POST
-    body:
-      mimeType: application/json
-      text: |-
-        {
-          "nome": "Restaurante Cauana",
-          "endereco": "rua azevedo",
-          "tipoCozinha": "italiana",
-          "horarioFuncionamento": "11h até 18h",
-          "idDonoRestaurante": 2
-        }
-    headers:
-      - name: Content-Type
-        value: application/json
-      - name: User-Agent
-        value: insomnia/11.0.1
-    settings:
-      renderRequestBody: true
-      encodeUrl: true
-      followRedirects: global
-      cookies:
-        send: true
-        store: true
-      rebuildPath: true
-  - url: http://localhost:8080/restaurante
-    name: Criar Restaurante logado
-    meta:
-      id: req_42c330ee9d3c4b42bf7f8abf151ba9c4
-      created: 1759871296730
-      modified: 1759871296730
-      isPrivate: false
-      sortKey: -1757371703606.5
-    method: POST
-    body:
-      mimeType: application/json
-      text: |-
-        {
-          "nome": "Restaurante Cauana",
-          "endereco": "rua azevedo",
-          "tipoCozinha": "italiana",
-          "horarioFuncionamento": "11h até 18h",
-          "idDonoRestaurante": 1
-        }
-    headers:
-      - name: Content-Type
-        value: application/json
-      - name: User-Agent
-        value: insomnia/11.0.1
-    settings:
-      renderRequestBody: true
-      encodeUrl: true
-      followRedirects: global
-      cookies:
-        send: true
-        store: true
-      rebuildPath: true
-  - url: http://localhost:8080/auth/login
-    name: Login
-    meta:
-      id: req_0a42ec2ebbed443ba7fd9ce5887984e8
-      created: 1759871300055
-      modified: 1759872999653
-      isPrivate: false
-      sortKey: -1758621365873.25
-    method: POST
-    body:
-      mimeType: application/json
-      text: |-
-        {
-          "login": "ale",
-          "senha": "123"
-        }
-    headers:
-      - name: Content-Type
-        value: application/json
-      - name: User-Agent
-        value: insomnia/11.0.1
-    settings:
-      renderRequestBody: true
-      encodeUrl: true
-      followRedirects: global
-      cookies:
-        send: true
-        store: true
-      rebuildPath: true
-  - url: http://localhost:8080/item-cardapio
-    name: Criar Item de Cardapio
-    meta:
-      id: req_8ff6381589d84203a0cc316beda8c25e
-      created: 1759871375122
-      modified: 1759873008978
-      isPrivate: false
-      sortKey: -1756122041339.75
-    method: POST
-    body:
-      mimeType: application/json
-      text: |-
-        {
-          "nome": "macarrao a o molho aleeee",
-          "descricao": "macarrao especialidade da casa",
-          "preco": 20.5,
-          "disponibilidade": true,
-          "foto": "src/foto.png",
-          "idRestaurante": 1
-        }
-    headers:
-      - name: Content-Type
-        value: application/json
-      - name: User-Agent
-        value: insomnia/11.0.1
-    settings:
-      renderRequestBody: true
-      encodeUrl: true
-      followRedirects: global
-      cookies:
-        send: true
-        store: true
-      rebuildPath: true
-  - url: http://localhost:8080/auth/logout
-    name: Logout
-    meta:
-      id: req_657c1552f19b497392380c5ca3367180
-      created: 1759871495788
-      modified: 1759871508955
-      isPrivate: false
-      sortKey: -1756122041239.75
-    method: POST
-    body:
-      mimeType: application/json
-    headers:
-      - name: Content-Type
-        value: application/json
-      - name: User-Agent
-        value: insomnia/11.0.1
-    settings:
-      renderRequestBody: true
-      encodeUrl: true
-      followRedirects: global
-      cookies:
-        send: true
-        store: true
-      rebuildPath: true
-cookieJar:
-  name: Default Jar
-  meta:
-    id: jar_08374cfee1171e92103fb6c8015b1171aab8a5f5
-    created: 1759871014793
-    modified: 1759873000635
-  cookies:
-    - key: JSESSIONID
-      value: C57A1A5175C1F6F94205C89BF0B7853A
-      domain: localhost
-      path: /
-      httpOnly: true
-      hostOnly: true
-      creation: 2025-10-07T21:08:04.224Z
-      lastAccessed: 2025-10-07T21:36:40.635Z
-      id: 1f261b68-1f0e-4d5a-a974-f52425ffbfb6
-environments:
-  name: Base Environment
-  meta:
-    id: env_08374cfee1171e92103fb6c8015b1171aab8a5f5
-    created: 1759871014788
-    modified: 1759871014788
-    isPrivate: false
+{
+	"log": {
+		"version": "1.2",
+		"creator": {
+			"name": "Insomnia REST Client",
+			"version": "insomnia.desktop.app:v11.0.1"
+		},
+		"entries": [
+			{
+				"startedDateTime": "2025-10-11T20:27:19.413Z",
+				"time": 13.672,
+				"request": {
+					"method": "POST",
+					"url": "http://localhost:8080/usuarios",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [
+						{
+							"name": "JSESSIONID",
+							"value": "63EBB1E2E47AD12E355CA526976A30ED",
+							"path": "/",
+							"domain": "localhost",
+							"httpOnly": true
+						}
+					],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "User-Agent",
+							"value": "insomnia/11.0.1"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "application/json",
+						"text": "{\n  \"nome\": \"ca\",\n  \"email\": \"ca.dias@hotmail.com\",\n  \"cpf\": \"48489963843\",\n  \"login\": \"ca\",\n  \"senha\": \"123\",\n  \"tipoUsuario\": \"DONO_RESTAURANTE\"\n}"
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 400,
+					"statusText": "",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/problem+json"
+						},
+						{
+							"name": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"name": "Date",
+							"value": "Sat, 11 Oct 2025 20:19:10 GMT"
+						},
+						{
+							"name": "Connection",
+							"value": "close"
+						}
+					],
+					"content": {
+						"size": 124,
+						"mimeType": "application/problem+json",
+						"text": "{\"type\":\"about:blank\",\"title\":\"Bad Request\",\"status\":400,\"detail\":\"Já existe usuário com este CPF\",\"instance\":\"/usuarios\"}"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 13.672,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Criar Usuario dono restaurante"
+			},
+			{
+				"startedDateTime": "2025-10-11T20:27:19.413Z",
+				"time": 18.807000000000002,
+				"request": {
+					"method": "POST",
+					"url": "http://localhost:8080/usuarios",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [
+						{
+							"name": "JSESSIONID",
+							"value": "63EBB1E2E47AD12E355CA526976A30ED",
+							"path": "/",
+							"domain": "localhost",
+							"httpOnly": true
+						}
+					],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "User-Agent",
+							"value": "insomnia/11.0.1"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "application/json",
+						"text": "{\n  \"nome\": \"ale\",\n  \"email\": \"ale.dias@hotmail.com\",\n  \"cpf\": \"82556130059\",\n  \"login\": \"ale\",\n  \"senha\": \"123\",\n  \"tipoUsuario\": \"DONO_RESTAURANTE\"\n}"
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 201,
+					"statusText": "",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"name": "Date",
+							"value": "Sat, 11 Oct 2025 20:19:13 GMT"
+						}
+					],
+					"content": {
+						"size": 133,
+						"mimeType": "application/json",
+						"text": "{\"id\":3,\"nome\":\"ale\",\"email\":\"ale.dias@hotmail.com\",\"cpf\":\"82556130059\",\"login\":\"ale\",\"senha\":\"123\",\"tipoUsuario\":\"DONO_RESTAURANTE\"}"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 18.807000000000002,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Criar Usuario dono restaurante 2"
+			},
+			{
+				"startedDateTime": "2025-10-11T20:27:19.413Z",
+				"time": 12.971,
+				"request": {
+					"method": "POST",
+					"url": "http://localhost:8080/usuarios",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [
+						{
+							"name": "JSESSIONID",
+							"value": "63EBB1E2E47AD12E355CA526976A30ED",
+							"path": "/",
+							"domain": "localhost",
+							"httpOnly": true
+						}
+					],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "User-Agent",
+							"value": "insomnia/11.0.1"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "application/json",
+						"text": "{\n  \"nome\": \"mel\",\n  \"email\": \"mel.dias@hotmail.com\",\n  \"cpf\": \"39462349096\",\n  \"login\": \"mel\",\n  \"senha\": \"123\",\n  \"tipoUsuario\": \"CLIENTE\"\n}"
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 400,
+					"statusText": "",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/problem+json"
+						},
+						{
+							"name": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"name": "Date",
+							"value": "Sat, 11 Oct 2025 20:19:15 GMT"
+						},
+						{
+							"name": "Connection",
+							"value": "close"
+						}
+					],
+					"content": {
+						"size": 124,
+						"mimeType": "application/problem+json",
+						"text": "{\"type\":\"about:blank\",\"title\":\"Bad Request\",\"status\":400,\"detail\":\"Já existe usuário com este CPF\",\"instance\":\"/usuarios\"}"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 12.971,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Criar Usuario cliente"
+			},
+			{
+				"startedDateTime": "2025-10-11T20:27:19.413Z",
+				"time": 11840.777,
+				"request": {
+					"method": "POST",
+					"url": "http://localhost:8080/restaurante",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [
+						{
+							"name": "JSESSIONID",
+							"value": "63EBB1E2E47AD12E355CA526976A30ED",
+							"path": "/",
+							"domain": "localhost",
+							"httpOnly": true
+						}
+					],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "User-Agent",
+							"value": "insomnia/11.0.1"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "application/json",
+						"text": "{\n  \"nome\": \"Restaurante Cauana\",\n  \"endereco\": \"rua azevedo\",\n  \"tipoCozinha\": \"italiana\",\n  \"horarioFuncionamento\": \"11h até 18h\",\n  \"idDonoRestaurante\": 2\n}"
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 403,
+					"statusText": "",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [
+						{
+							"name": "JSESSIONID",
+							"value": "8AA2D3D15F1701E6779BF9F782C4568A",
+							"path": "/",
+							"httpOnly": true
+						}
+					],
+					"headers": [
+						{
+							"name": "Set-Cookie",
+							"value": "JSESSIONID=8AA2D3D15F1701E6779BF9F782C4568A; Path=/; HttpOnly"
+						},
+						{
+							"name": "Content-Type",
+							"value": "application/problem+json"
+						},
+						{
+							"name": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"name": "Date",
+							"value": "Sat, 11 Oct 2025 20:18:00 GMT"
+						}
+					],
+					"content": {
+						"size": 165,
+						"mimeType": "application/problem+json",
+						"text": "{\"type\":\"about:blank\",\"title\":\"Forbidden\",\"status\":403,\"detail\":\"Somente usuários do tipo DONO_RESTAURANTE podem cadastrar restaurantes.\",\"instance\":\"/restaurante\"}"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 11840.777,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Criar Restaurante deslogado (Erro esperado)"
+			},
+			{
+				"startedDateTime": "2025-10-11T20:27:19.413Z",
+				"time": 12.356,
+				"request": {
+					"method": "POST",
+					"url": "http://localhost:8080/auth/login",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [
+						{
+							"name": "JSESSIONID",
+							"value": "63EBB1E2E47AD12E355CA526976A30ED",
+							"path": "/",
+							"domain": "localhost",
+							"httpOnly": true
+						}
+					],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "User-Agent",
+							"value": "insomnia/11.0.1"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "application/json",
+						"text": "{\n  \"login\": \"ca\",\n  \"senha\": \"123\"\n}"
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 200,
+					"statusText": "",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [
+						{
+							"name": "JSESSIONID",
+							"value": "63EBB1E2E47AD12E355CA526976A30ED",
+							"path": "/",
+							"httpOnly": true
+						}
+					],
+					"headers": [
+						{
+							"name": "Set-Cookie",
+							"value": "JSESSIONID=63EBB1E2E47AD12E355CA526976A30ED; Path=/; HttpOnly"
+						},
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"name": "Date",
+							"value": "Sat, 11 Oct 2025 20:25:18 GMT"
+						}
+					],
+					"content": {
+						"size": 132,
+						"mimeType": "application/json",
+						"text": "{\"mensagem\":\"Login realizado com sucesso!\",\"cpf\":\"48489963843\",\"nome\":\"ca\",\"tipoUsuario\":\"DONO_RESTAURANTE\",\"restaurantesIds\":[1,2]}"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 12.356,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Login Dono Restaurante"
+			},
+			{
+				"startedDateTime": "2025-10-11T20:27:19.413Z",
+				"time": 5888.077,
+				"request": {
+					"method": "POST",
+					"url": "http://localhost:8080/restaurante",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [
+						{
+							"name": "JSESSIONID",
+							"value": "63EBB1E2E47AD12E355CA526976A30ED",
+							"path": "/",
+							"domain": "localhost",
+							"httpOnly": true
+						}
+					],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "User-Agent",
+							"value": "insomnia/11.0.1"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "application/json",
+						"text": "{\n  \"nome\": \"Restaurante Cauana\",\n  \"endereco\": \"rua azevedo\",\n  \"tipoCozinha\": \"italiana\",\n  \"horarioFuncionamento\": \"11h até 18h\",\n  \"idDonoRestaurante\": 1\n}"
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 201,
+					"statusText": "",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"name": "Date",
+							"value": "Sat, 11 Oct 2025 20:19:30 GMT"
+						}
+					],
+					"content": {
+						"size": 151,
+						"mimeType": "application/json",
+						"text": "{\"id\":2,\"nome\":\"Restaurante Cauana\",\"endereco\":\"rua azevedo\",\"tipoCozinha\":\"italiana\",\"horarioFuncionamento\":\"11h até 18h\",\"nomeDonoRestaurante\":\"ca\"}"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 5888.077,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Criar Restaurante logado"
+			},
+			{
+				"startedDateTime": "2025-10-11T20:27:19.413Z",
+				"time": 38.607,
+				"request": {
+					"method": "POST",
+					"url": "http://localhost:8080/item-cardapio",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [
+						{
+							"name": "JSESSIONID",
+							"value": "63EBB1E2E47AD12E355CA526976A30ED",
+							"path": "/",
+							"domain": "localhost",
+							"httpOnly": true
+						}
+					],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "User-Agent",
+							"value": "insomnia/11.0.1"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "application/json",
+						"text": "{\n  \"nome\": \"macarrao ao molho\",\n  \"descricao\": \"macarrao especialidade da casa\",\n  \"preco\": 20.5,\n  \"disponibilidade\": true,\n  \"foto\": \"src/foto.png\",\n  \"idRestaurante\": 1\n}"
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 201,
+					"statusText": "",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"name": "Date",
+							"value": "Sat, 11 Oct 2025 20:06:28 GMT"
+						}
+					],
+					"content": {
+						"size": 177,
+						"mimeType": "application/json",
+						"text": "{\"id\":1,\"nome\":\"macarrao ao molho\",\"descricao\":\"macarrao especialidade da casa\",\"preco\":20.5,\"disponibilidade\":true,\"foto\":\"src/foto.png\",\"nomeRestaurante\":\"Restaurante Cauana\"}"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 38.607,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Criar Item de Cardapio"
+			},
+			{
+				"startedDateTime": "2025-10-11T20:27:19.413Z",
+				"time": 48.730000000000004,
+				"request": {
+					"method": "PUT",
+					"url": "http://localhost:8080/item-cardapio/1",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [
+						{
+							"name": "JSESSIONID",
+							"value": "63EBB1E2E47AD12E355CA526976A30ED",
+							"path": "/",
+							"domain": "localhost",
+							"httpOnly": true
+						}
+					],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "User-Agent",
+							"value": "insomnia/11.0.1"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "application/json",
+						"text": "{\n  \"nome\": \"pizza\",\n  \"descricao\": \"pizza da casa\",\n  \"preco\": 60.5,\n  \"disponibilidade\": true,\n  \"foto\": \"src/foto.png\",\n  \"idRestaurante\": 1\n}"
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 200,
+					"statusText": "",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"name": "Date",
+							"value": "Sat, 11 Oct 2025 20:25:20 GMT"
+						}
+					],
+					"content": {
+						"size": 148,
+						"mimeType": "application/json",
+						"text": "{\"id\":1,\"nome\":\"pizza\",\"descricao\":\"pizza da casa\",\"preco\":60.5,\"disponibilidade\":true,\"foto\":\"src/foto.png\",\"nomeRestaurante\":\"Restaurante Cauana\"}"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 48.730000000000004,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Editar Item de Cardapio"
+			},
+			{
+				"startedDateTime": "2025-10-11T20:27:19.413Z",
+				"time": 2.881,
+				"request": {
+					"method": "POST",
+					"url": "http://localhost:8080/auth/logout",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [
+						{
+							"name": "JSESSIONID",
+							"value": "63EBB1E2E47AD12E355CA526976A30ED",
+							"path": "/",
+							"domain": "localhost",
+							"httpOnly": true
+						}
+					],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "User-Agent",
+							"value": "insomnia/11.0.1"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "application/json",
+						"text": ""
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 200,
+					"statusText": "",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Content-Length",
+							"value": "0"
+						},
+						{
+							"name": "Date",
+							"value": "Sat, 11 Oct 2025 20:25:14 GMT"
+						}
+					],
+					"content": {
+						"size": 0,
+						"mimeType": "",
+						"text": ""
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 2.881,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Logout"
+			},
+			{
+				"startedDateTime": "2025-10-11T20:27:19.413Z",
+				"time": 14.982000000000001,
+				"request": {
+					"method": "POST",
+					"url": "http://localhost:8080/auth/login",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [
+						{
+							"name": "JSESSIONID",
+							"value": "63EBB1E2E47AD12E355CA526976A30ED",
+							"path": "/",
+							"domain": "localhost",
+							"httpOnly": true
+						}
+					],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "User-Agent",
+							"value": "insomnia/11.0.1"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "application/json",
+						"text": "{\n  \"login\": \"ale\",\n  \"senha\": \"123\"\n}"
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 200,
+					"statusText": "",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [
+						{
+							"name": "JSESSIONID",
+							"value": "27E6BDF96D7777A55CE45418F29960BB",
+							"path": "/",
+							"httpOnly": true
+						}
+					],
+					"headers": [
+						{
+							"name": "Set-Cookie",
+							"value": "JSESSIONID=27E6BDF96D7777A55CE45418F29960BB; Path=/; HttpOnly"
+						},
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"name": "Date",
+							"value": "Sat, 11 Oct 2025 20:19:50 GMT"
+						}
+					],
+					"content": {
+						"size": 130,
+						"mimeType": "application/json",
+						"text": "{\"mensagem\":\"Login realizado com sucesso!\",\"cpf\":\"82556130059\",\"nome\":\"ale\",\"tipoUsuario\":\"DONO_RESTAURANTE\",\"restaurantesIds\":[]}"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 14.982000000000001,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Login Dono Restaurante 2"
+			},
+			{
+				"startedDateTime": "2025-10-11T20:27:19.413Z",
+				"time": 1786.2,
+				"request": {
+					"method": "POST",
+					"url": "http://localhost:8080/restaurante",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [
+						{
+							"name": "JSESSIONID",
+							"value": "63EBB1E2E47AD12E355CA526976A30ED",
+							"path": "/",
+							"domain": "localhost",
+							"httpOnly": true
+						}
+					],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "User-Agent",
+							"value": "insomnia/11.0.1"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "application/json",
+						"text": "{\n  \"nome\": \"Restaurante Cauana\",\n  \"endereco\": \"rua azevedo\",\n  \"tipoCozinha\": \"italiana\",\n  \"horarioFuncionamento\": \"11h até 18h\",\n  \"idDonoRestaurante\": 1\n}"
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 403,
+					"statusText": "",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/problem+json"
+						},
+						{
+							"name": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"name": "Date",
+							"value": "Sat, 11 Oct 2025 20:19:55 GMT"
+						}
+					],
+					"content": {
+						"size": 159,
+						"mimeType": "application/problem+json",
+						"text": "{\"type\":\"about:blank\",\"title\":\"Forbidden\",\"status\":403,\"detail\":\"Usuário logado não corresponde ao dono do restaurante informado.\",\"instance\":\"/restaurante\"}"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 1786.2,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Criar Restaurante logado (Erro usuário não autorizado)"
+			},
+			{
+				"startedDateTime": "2025-10-11T20:27:19.413Z",
+				"time": 21883.721,
+				"request": {
+					"method": "POST",
+					"url": "http://localhost:8080/item-cardapio",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [
+						{
+							"name": "JSESSIONID",
+							"value": "63EBB1E2E47AD12E355CA526976A30ED",
+							"path": "/",
+							"domain": "localhost",
+							"httpOnly": true
+						}
+					],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "User-Agent",
+							"value": "insomnia/11.0.1"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "application/json",
+						"text": "{\n  \"nome\": \"macarrao ao molho\",\n  \"descricao\": \"macarrao especialidade da casa\",\n  \"preco\": 20.5,\n  \"disponibilidade\": true,\n  \"foto\": \"src/foto.png\",\n  \"idRestaurante\": 1\n}"
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 403,
+					"statusText": "",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/problem+json"
+						},
+						{
+							"name": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"name": "Date",
+							"value": "Sat, 11 Oct 2025 20:20:23 GMT"
+						}
+					],
+					"content": {
+						"size": 161,
+						"mimeType": "application/problem+json",
+						"text": "{\"type\":\"about:blank\",\"title\":\"Forbidden\",\"status\":403,\"detail\":\"Usuário logado não corresponde ao dono do restaurante informado.\",\"instance\":\"/item-cardapio\"}"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 21883.721,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Criar Item de Cardapio (Erro usuário não autorizado)"
+			},
+			{
+				"startedDateTime": "2025-10-11T20:27:19.413Z",
+				"time": 3.995,
+				"request": {
+					"method": "POST",
+					"url": "http://localhost:8080/auth/logout",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [
+						{
+							"name": "JSESSIONID",
+							"value": "63EBB1E2E47AD12E355CA526976A30ED",
+							"path": "/",
+							"domain": "localhost",
+							"httpOnly": true
+						}
+					],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "User-Agent",
+							"value": "insomnia/11.0.1"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "application/json",
+						"text": ""
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 200,
+					"statusText": "",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Content-Length",
+							"value": "0"
+						},
+						{
+							"name": "Date",
+							"value": "Sat, 11 Oct 2025 20:20:30 GMT"
+						}
+					],
+					"content": {
+						"size": 0,
+						"mimeType": "",
+						"text": ""
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 3.995,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Logout"
+			},
+			{
+				"startedDateTime": "2025-10-11T20:27:19.413Z",
+				"time": 11.846,
+				"request": {
+					"method": "POST",
+					"url": "http://localhost:8080/auth/login",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [
+						{
+							"name": "JSESSIONID",
+							"value": "63EBB1E2E47AD12E355CA526976A30ED",
+							"path": "/",
+							"domain": "localhost",
+							"httpOnly": true
+						}
+					],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "User-Agent",
+							"value": "insomnia/11.0.1"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "application/json",
+						"text": "{\n  \"login\": \"mel\",\n  \"senha\": \"123\"\n}"
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 200,
+					"statusText": "",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [
+						{
+							"name": "JSESSIONID",
+							"value": "04DD6DF11708C47D61938009E07C0795",
+							"path": "/",
+							"httpOnly": true
+						}
+					],
+					"headers": [
+						{
+							"name": "Set-Cookie",
+							"value": "JSESSIONID=04DD6DF11708C47D61938009E07C0795; Path=/; HttpOnly"
+						},
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"name": "Date",
+							"value": "Sat, 11 Oct 2025 20:20:32 GMT"
+						}
+					],
+					"content": {
+						"size": 121,
+						"mimeType": "application/json",
+						"text": "{\"mensagem\":\"Login realizado com sucesso!\",\"cpf\":\"39462349096\",\"nome\":\"mel\",\"tipoUsuario\":\"CLIENTE\",\"restaurantesIds\":[]}"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 11.846,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Login Cliente"
+			},
+			{
+				"startedDateTime": "2025-10-11T20:27:19.413Z",
+				"time": 11160.328,
+				"request": {
+					"method": "POST",
+					"url": "http://localhost:8080/item-cardapio",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [
+						{
+							"name": "JSESSIONID",
+							"value": "63EBB1E2E47AD12E355CA526976A30ED",
+							"path": "/",
+							"domain": "localhost",
+							"httpOnly": true
+						}
+					],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "User-Agent",
+							"value": "insomnia/11.0.1"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "application/json",
+						"text": "{\n  \"nome\": \"macarrao ao molho\",\n  \"descricao\": \"macarrao especialidade da casa\",\n  \"preco\": 20.5,\n  \"disponibilidade\": true,\n  \"foto\": \"src/foto.png\",\n  \"idRestaurante\": 2\n}"
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 403,
+					"statusText": "",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/problem+json"
+						},
+						{
+							"name": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"name": "Date",
+							"value": "Sat, 11 Oct 2025 20:21:10 GMT"
+						}
+					],
+					"content": {
+						"size": 163,
+						"mimeType": "application/problem+json",
+						"text": "{\"type\":\"about:blank\",\"title\":\"Forbidden\",\"status\":403,\"detail\":\"Somente o perfil DONO_RESTAURANTE pode cadastrar itens de cardápio.\",\"instance\":\"/item-cardapio\"}"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 11160.328,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Criar Item de Cardapio (Erro usuario não autorizado)"
+			},
+			{
+				"startedDateTime": "2025-10-11T20:27:19.413Z",
+				"time": 31.940999999999995,
+				"request": {
+					"method": "GET",
+					"url": "http://localhost:8080/restaurante",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [
+						{
+							"name": "JSESSIONID",
+							"value": "63EBB1E2E47AD12E355CA526976A30ED",
+							"path": "/",
+							"domain": "localhost",
+							"httpOnly": true
+						}
+					],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "User-Agent",
+							"value": "insomnia/11.0.1"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "application/json",
+						"text": ""
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 200,
+					"statusText": "",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"name": "Date",
+							"value": "Sat, 11 Oct 2025 20:21:22 GMT"
+						}
+					],
+					"content": {
+						"size": 305,
+						"mimeType": "application/json",
+						"text": "[{\"id\":1,\"nome\":\"Restaurante Cauana\",\"endereco\":\"rua azevedo\",\"tipoCozinha\":\"italiana\",\"horarioFuncionamento\":\"11h até 18h\",\"nomeDonoRestaurante\":\"ca\"},{\"id\":2,\"nome\":\"Restaurante Cauana\",\"endereco\":\"rua azevedo\",\"tipoCozinha\":\"italiana\",\"horarioFuncionamento\":\"11h até 18h\",\"nomeDonoRestaurante\":\"ca\"}]"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 31.940999999999995,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Buscar Restaurantes"
+			},
+			{
+				"startedDateTime": "2025-10-11T20:27:19.413Z",
+				"time": 15.651000000000002,
+				"request": {
+					"method": "GET",
+					"url": "http://localhost:8080/item-cardapio/restaurante/1",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [
+						{
+							"name": "JSESSIONID",
+							"value": "63EBB1E2E47AD12E355CA526976A30ED",
+							"path": "/",
+							"domain": "localhost",
+							"httpOnly": true
+						}
+					],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "User-Agent",
+							"value": "insomnia/11.0.1"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "application/json",
+						"text": ""
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 200,
+					"statusText": "",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"name": "Date",
+							"value": "Sat, 11 Oct 2025 20:25:29 GMT"
+						}
+					],
+					"content": {
+						"size": 150,
+						"mimeType": "application/json",
+						"text": "[{\"id\":1,\"nome\":\"pizza\",\"descricao\":\"pizza da casa\",\"preco\":60.5,\"disponibilidade\":true,\"foto\":\"src/foto.png\",\"nomeRestaurante\":\"Restaurante Cauana\"}]"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 15.651000000000002,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Buscar Item Cardápio Restaurante específico"
+			},
+			{
+				"startedDateTime": "2025-10-11T20:27:19.413Z",
+				"time": 3.366,
+				"request": {
+					"method": "POST",
+					"url": "http://localhost:8080/auth/logout",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [
+						{
+							"name": "JSESSIONID",
+							"value": "63EBB1E2E47AD12E355CA526976A30ED",
+							"path": "/",
+							"domain": "localhost",
+							"httpOnly": true
+						}
+					],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "User-Agent",
+							"value": "insomnia/11.0.1"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "application/json",
+						"text": ""
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 200,
+					"statusText": "",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Content-Length",
+							"value": "0"
+						},
+						{
+							"name": "Date",
+							"value": "Sat, 11 Oct 2025 20:19:48 GMT"
+						}
+					],
+					"content": {
+						"size": 0,
+						"mimeType": "",
+						"text": ""
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 3.366,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Logout"
+			},
+			{
+				"startedDateTime": "2025-10-11T20:27:19.413Z",
+				"time": 0,
+				"request": {
+					"method": "POST",
+					"url": "http://localhost:8080/auth/login",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [
+						{
+							"name": "JSESSIONID",
+							"value": "63EBB1E2E47AD12E355CA526976A30ED",
+							"path": "/",
+							"domain": "localhost",
+							"httpOnly": true
+						}
+					],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "User-Agent",
+							"value": "insomnia/11.0.1"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "application/json",
+						"text": "{\n  \"login\": \"ca\",\n  \"senha\": \"123\"\n}"
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 0,
+					"statusText": "",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [],
+					"content": {
+						"size": 0,
+						"mimeType": ""
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 0,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Login Dono Restaurante"
+			},
+			{
+				"startedDateTime": "2025-10-11T20:27:19.413Z",
+				"time": 20.799000000000003,
+				"request": {
+					"method": "GET",
+					"url": "http://localhost:8080/tipo-usuario",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [
+						{
+							"name": "JSESSIONID",
+							"value": "63EBB1E2E47AD12E355CA526976A30ED",
+							"path": "/",
+							"domain": "localhost",
+							"httpOnly": true
+						}
+					],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "User-Agent",
+							"value": "insomnia/11.0.1"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "application/json",
+						"text": ""
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 200,
+					"statusText": "",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"name": "Date",
+							"value": "Sat, 11 Oct 2025 20:23:49 GMT"
+						}
+					],
+					"content": {
+						"size": 265,
+						"mimeType": "application/json",
+						"text": "[{\"id\":1,\"nome\":\"DONO_RESTAURANTE\",\"descricao\":\"Usuário que pode gerenciar um restaurante.\"},{\"id\":2,\"nome\":\"CLIENTE\",\"descricao\":\"Usuário final que pode fazer pedidos e avaliações.\"},{\"id\":3,\"nome\":\"administrador\",\"descricao\":\"Usuario com permissões totais\"}]"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 20.799000000000003,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Buscar Tipos de Usuários"
+			},
+			{
+				"startedDateTime": "2025-10-11T20:27:19.413Z",
+				"time": 16.177,
+				"request": {
+					"method": "POST",
+					"url": "http://localhost:8080/tipo-usuario",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [
+						{
+							"name": "JSESSIONID",
+							"value": "63EBB1E2E47AD12E355CA526976A30ED",
+							"path": "/",
+							"domain": "localhost",
+							"httpOnly": true
+						}
+					],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "User-Agent",
+							"value": "insomnia/11.0.1"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "application/json",
+						"text": "{\n  \"nome\": \"ADMINISTRADOR\",\n  \"descricao\": \"Usuario com permissões totais\"\n}"
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 201,
+					"statusText": "",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"name": "Date",
+							"value": "Sat, 11 Oct 2025 20:24:02 GMT"
+						}
+					],
+					"content": {
+						"size": 76,
+						"mimeType": "application/json",
+						"text": "{\"id\":4,\"nome\":\"ADMINISTRADOR\",\"descricao\":\"Usuario com permissões totais\"}"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 16.177,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Criar Tipo Usuario"
+			}
+		]
+	}
+}

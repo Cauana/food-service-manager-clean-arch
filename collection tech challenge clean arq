@@ -1,0 +1,646 @@
+type: collection.insomnia.rest/5.0
+name: Insomina Collection Tech Challenge Clean Arch
+meta:
+  id: wrk_b38c9897b085461cb78f7ebe39f72cc6
+  created: 1759871014755
+  modified: 1759873114124
+collection:
+  - url: http://localhost:8080/usuarios
+    name: Criar Usuario dono restaurante
+    meta:
+      id: req_35b50d23379b4bfb8cbf9bf4455c5939
+      created: 1759871028240
+      modified: 1760212491100
+      isPrivate: false
+      sortKey: -1759871028240
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "nome": "ca",
+          "email": "ca.dias@hotmail.com",
+          "cpf": "48489963843",
+          "login": "ca",
+          "senha": "123",
+          "tipoUsuario": "DONO_RESTAURANTE"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.0.1
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/restaurante
+    name: Criar Restaurante deslogado (Erro esperado)
+    meta:
+      id: req_9adf2c2d855a43e09d8e8a4ac0e03515
+      created: 1759871202675
+      modified: 1760210363637
+      isPrivate: false
+      sortKey: -1759871028140
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "nome": "Restaurante Cauana",
+          "endereco": "rua azevedo",
+          "tipoCozinha": "italiana",
+          "horarioFuncionamento": "11h até 18h",
+          "idDonoRestaurante": 2
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.0.1
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/restaurante
+    name: Criar Restaurante logado
+    meta:
+      id: req_42c330ee9d3c4b42bf7f8abf151ba9c4
+      created: 1759871296730
+      modified: 1760212283462
+      isPrivate: false
+      sortKey: -1757371703606.5
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "nome": "Restaurante Cauana",
+          "endereco": "rua azevedo",
+          "tipoCozinha": "italiana",
+          "horarioFuncionamento": "11h até 18h",
+          "idDonoRestaurante": 1
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.0.1
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/auth/login
+    name: Login Dono Restaurante
+    meta:
+      id: req_0a42ec2ebbed443ba7fd9ce5887984e8
+      created: 1759871300055
+      modified: 1760212539580
+      isPrivate: false
+      sortKey: -1758621365873.25
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "login": "ca",
+          "senha": "123"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.0.1
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/item-cardapio
+    name: Criar Item de Cardapio
+    meta:
+      id: req_8ff6381589d84203a0cc316beda8c25e
+      created: 1759871375122
+      modified: 1760212029186
+      isPrivate: false
+      sortKey: -1756122041339.75
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "nome": "macarrao ao molho",
+          "descricao": "macarrao especialidade da casa",
+          "preco": 20.5,
+          "disponibilidade": true,
+          "foto": "src/foto.png",
+          "idRestaurante": 1
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.0.1
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/auth/logout
+    name: Logout
+    meta:
+      id: req_657c1552f19b497392380c5ca3367180
+      created: 1759871495788
+      modified: 1760214128456
+      isPrivate: false
+      sortKey: -1755497209956.375
+    method: POST
+    body:
+      mimeType: application/json
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.0.1
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/usuarios
+    name: Criar Usuario cliente
+    meta:
+      id: req_3c9c3e8824cf415a867c8e23cc2a02a9
+      created: 1760211116933
+      modified: 1760211167608
+      isPrivate: false
+      sortKey: -1759871028190
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "nome": "mel",
+          "email": "mel.dias@hotmail.com",
+          "cpf": "39462349096",
+          "login": "mel",
+          "senha": "123",
+          "tipoUsuario": "CLIENTE"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.0.1
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/auth/login
+    name: Login Cliente
+    meta:
+      id: req_ff95f36733ac47f5ab2aa6e663750ce1
+      created: 1760211320074
+      modified: 1760211402560
+      isPrivate: false
+      sortKey: -1756122041139.75
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "login": "mel",
+          "senha": "123"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.0.1
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/restaurante
+    name: Buscar Restaurantes
+    meta:
+      id: req_77f6d344882f48448a92ccf2a4d59a8f
+      created: 1760211423506
+      modified: 1760211432944
+      isPrivate: false
+      sortKey: -1756122041039.75
+    method: GET
+    body:
+      mimeType: application/json
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.0.1
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/item-cardapio/restaurante/1
+    name: Buscar Item Cardápio Restaurante específico
+    meta:
+      id: req_1013655b4e0c4b25933884d43bbb5b6b
+      created: 1760211459638
+      modified: 1760214096757
+      isPrivate: false
+      sortKey: -1755497210056.375
+    method: GET
+    body:
+      mimeType: application/json
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.0.1
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/item-cardapio
+    name: Criar Item de Cardapio (Erro usuario não autorizado)
+    meta:
+      id: req_61dc57ee248f403a84a1fdbff6b28d40
+      created: 1760212119932
+      modified: 1760212316845
+      isPrivate: false
+      sortKey: -1756122041089.75
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "nome": "macarrao ao molho",
+          "descricao": "macarrao especialidade da casa",
+          "preco": 20.5,
+          "disponibilidade": true,
+          "foto": "src/foto.png",
+          "idRestaurante": 2
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.0.1
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/usuarios
+    name: Criar Usuario dono restaurante 2
+    meta:
+      id: req_5bb9c6e93790497db63b919c4e9b1875
+      created: 1760212496636
+      modified: 1760212499509
+      isPrivate: false
+      sortKey: -1759871028215
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "nome": "ale",
+          "email": "ale.dias@hotmail.com",
+          "cpf": "82556130059",
+          "login": "ale",
+          "senha": "123",
+          "tipoUsuario": "DONO_RESTAURANTE"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.0.1
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/auth/login
+    name: Login Dono Restaurante 2
+    meta:
+      id: req_95774aa4db264d86a7191fcfb301fbb1
+      created: 1760212560727
+      modified: 1760212574370
+      isPrivate: false
+      sortKey: -1756122041189.75
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "login": "ale",
+          "senha": "123"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.0.1
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/auth/logout
+    name: Logout
+    meta:
+      id: req_45473c640d8742c9b028a18e50d8653e
+      created: 1760212568750
+      modified: 1760212570495
+      isPrivate: false
+      sortKey: -1756122041164.75
+    method: POST
+    body:
+      mimeType: application/json
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.0.1
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/restaurante
+    name: Criar Restaurante logado (Erro usuário não autorizado)
+    meta:
+      id: req_8652e211a1b547eda9866a04e90b25e5
+      created: 1760212603195
+      modified: 1760212607972
+      isPrivate: false
+      sortKey: -1756122041177.25
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "nome": "Restaurante Cauana",
+          "endereco": "rua azevedo",
+          "tipoCozinha": "italiana",
+          "horarioFuncionamento": "11h até 18h",
+          "idDonoRestaurante": 1
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.0.1
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/item-cardapio
+    name: Criar Item de Cardapio (Erro usuário não autorizado)
+    meta:
+      id: req_5399a077d5a944d3be558960491eff4d
+      created: 1760212640023
+      modified: 1760212642399
+      isPrivate: false
+      sortKey: -1756122041171
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "nome": "macarrao ao molho",
+          "descricao": "macarrao especialidade da casa",
+          "preco": 20.5,
+          "disponibilidade": true,
+          "foto": "src/foto.png",
+          "idRestaurante": 1
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.0.1
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/auth/logout
+    name: Logout
+    meta:
+      id: req_01e48c6e6b7e4be0abb771088045b655
+      created: 1760214125964
+      modified: 1760214125964
+      isPrivate: false
+      sortKey: -1756122041214.75
+    method: POST
+    body:
+      mimeType: application/json
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.0.1
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/auth/login
+    name: Login Dono Restaurante
+    meta:
+      id: req_e5924be41b89467ca188c3973aed3df0
+      created: 1760214135292
+      modified: 1760214138789
+      isPrivate: false
+      sortKey: -1755497209856.375
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "login": "ca",
+          "senha": "123"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.0.1
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/tipo-usuario
+    name: Criar Tipo Usuario
+    meta:
+      id: req_59b64d71c7e74da89ef6dd2350bbb836
+      created: 1760214151939
+      modified: 1760214241414
+      isPrivate: false
+      sortKey: -1755497209756.375
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "nome": "ADMINISTRADOR",
+          "descricao": "Usuario com permissões totais"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.0.1
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/tipo-usuario
+    name: Buscar Tipos de Usuários
+    meta:
+      id: req_15b09709562d4bd986b9345bff7c0126
+      created: 1760214217771
+      modified: 1760214228051
+      isPrivate: false
+      sortKey: -1755497209806.375
+    method: GET
+    body:
+      mimeType: application/json
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.0.1
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/item-cardapio/1
+    name: Editar Item de Cardapio
+    meta:
+      id: req_3f8fbb6e11cb4b46b431fb31b1767c5e
+      created: 1760214268637
+      modified: 1760214303926
+      isPrivate: false
+      sortKey: -1756122041277.25
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "nome": "pizza",
+          "descricao": "pizza da casa",
+          "preco": 60.5,
+          "disponibilidade": true,
+          "foto": "src/foto.png",
+          "idRestaurante": 1
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.0.1
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_08374cfee1171e92103fb6c8015b1171aab8a5f5
+    created: 1759871014793
+    modified: 1760214318073
+  cookies:
+    - key: JSESSIONID
+      value: 63EBB1E2E47AD12E355CA526976A30ED
+      domain: localhost
+      path: /
+      httpOnly: true
+      hostOnly: true
+      creation: 2025-10-07T21:08:04.224Z
+      lastAccessed: 2025-10-11T20:25:18.073Z
+      id: bb180023-0131-496f-9977-d8bb45c120f6
+environments:
+  name: Base Environment
+  meta:
+    id: env_08374cfee1171e92103fb6c8015b1171aab8a5f5
+    created: 1759871014788
+    modified: 1759871014788
+    isPrivate: false
