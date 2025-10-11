@@ -42,14 +42,13 @@ class AtualizarTipoUsuarioUseCaseImplTest {
 
     }
 
-    //TODO: Corrigir esse teste
-  /*  @Test
+    @Test
     @DisplayName("Deve atualizar o tipo de usuário com sucesso e retornar o objeto atualizado")
     void deveAtualizarTipoUsuarioComSucesso() {
 
         when(tipoUsuarioGateway.buscarPorId(tipoUsuarioId)).thenReturn(Optional.of(tipoUsuarioExistente));
 
-        when(tipoUsuarioGateway.criarTipoUsuario(any(TipoUsuario.class))).thenReturn(tipoUsuarioAtualizado);
+        when(tipoUsuarioGateway.salvar(any(TipoUsuario.class))).thenReturn(tipoUsuarioAtualizado);
 
         TipoUsuario resultado = atualizarTipoUsuarioUseCaseImpl.atualizar(tipoUsuarioId, novoTipoUsuarioDto);
 
@@ -60,10 +59,10 @@ class AtualizarTipoUsuarioUseCaseImplTest {
         assertEquals(novoTipoUsuarioDto.getDescricao(), resultado.getDescricao());
 
         verify(tipoUsuarioGateway, times(1)).buscarPorId(tipoUsuarioId);
-        verify(tipoUsuarioGateway, times(1)).criarTipoUsuario(tipoUsuarioAtualizado);
+        verify(tipoUsuarioGateway, times(1)).salvar(any(TipoUsuario.class));
 
         assertEquals(novoTipoUsuarioDto.getNome(), tipoUsuarioExistente.getNome());
-    }*/
+    }
 
     @Test
     @DisplayName("Deve lançar ResponseStatusException 404 quando o tipo usuário não é encontrado")

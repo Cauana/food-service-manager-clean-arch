@@ -43,7 +43,7 @@ class CadastrarRestauranteUseCaseImplTest {
     @BeforeEach
     void setUp() {
         sessionMock = mock(HttpSession.class);
-        usuarioMock = Usuario.builder().id(201L).nome("Jose Carlos").tipoUsuario(DONO).build();
+        usuarioMock = Usuario.builder().id(DONO_ID).nome("Jose Carlos").cpf("18065259090").tipoUsuario(DONO).build();
         restauranteMock = Restaurante.builder()
                 .id(DONO_ID)
                 .nome("Yakisoba Liberdade")
@@ -60,6 +60,7 @@ class CadastrarRestauranteUseCaseImplTest {
 
         when(usuarioGateway.buscarPorId(usuarioMock.getId())).thenReturn(Optional.of(usuarioMock));
         when(sessionMock.getAttribute("tipoUsuario")).thenReturn(DONO);
+        when(sessionMock.getAttribute("cpfUsuario")).thenReturn(usuarioMock.getCpf());
         when(restauranteGateway.criarRestaurante(any(Restaurante.class))).thenReturn(restauranteMock);
 
         var restauranteCriado = cadastrarRestauranteUseCaseImpl.criarRestaurante(restauranteDTO(), sessionMock );
