@@ -24,8 +24,14 @@ public class LoginApiController {
         if (response.getMensagem().equals("Login realizado com sucesso!")) {
             session.setAttribute("usuario_logado", response);
             session.setAttribute("tipoUsuario", response.getTipoUsuario());
+            session.setAttribute("cpfUsuario", response.getCpf());
         }
         return response;
+    }
+
+    @PostMapping("/logout")
+    public void logout(HttpSession session) {
+        session.invalidate();
     }
 }
 

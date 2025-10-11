@@ -10,4 +10,6 @@ public interface ItemCardapioGateway {
     ItemCardapio criarItemCardapio(ItemCardapio item);
     Optional<ItemCardapio> buscarPorId(Long id);
     List<ItemCardapio> buscarTodosItensCardapio();
+    ItemCardapio salvar(ItemCardapio existente);
+    void deletar(ItemCardapio item);
 }

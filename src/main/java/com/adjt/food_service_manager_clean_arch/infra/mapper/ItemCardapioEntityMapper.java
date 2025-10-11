@@ -22,6 +22,8 @@ public class ItemCardapioEntityMapper {
                 .nome(itemCardapio.getNome())
                 .descricao(itemCardapio.getDescricao())
                 .preco(itemCardapio.getPreco())
+                .disponibilidade(itemCardapio.getDisponibilidade())
+                .foto(itemCardapio.getFoto())
                 .restaurante(restauranteEntityMapper.toEntity(itemCardapio.getRestaurante()))
                 .build();
     }
@@ -33,6 +35,8 @@ public class ItemCardapioEntityMapper {
                 .nome(entity.getNome())
                 .descricao(entity.getDescricao())
                 .preco(entity.getPreco())
+                .disponibilidade(entity.getDisponibilidade())
+                .foto(entity.getFoto())
                 .restaurante(restauranteEntityMapper.toRestaurante(entity.getRestaurante()))
                 .build();
     }

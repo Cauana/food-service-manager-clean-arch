@@ -11,5 +11,8 @@ public class TipoUsuario {
     private Long id;
     private String nome;
     private String descricao;
-    
+
+    public TipoUsuario() {
+
+    }
 }

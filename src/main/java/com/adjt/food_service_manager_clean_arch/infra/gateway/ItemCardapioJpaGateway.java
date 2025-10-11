@@ -1,5 +1,6 @@
 package com.adjt.food_service_manager_clean_arch.infra.gateway;
 
+import org.hibernate.cache.spi.support.AbstractReadWriteAccess;
 import org.springframework.stereotype.Component;
 
 import com.adjt.food_service_manager_clean_arch.core.domain.ItemCardapio;
@@ -23,6 +24,15 @@ public class ItemCardapioJpaGateway implements ItemCardapioGateway {
         ItemCardapioEntity entity = mapper.toEntity(itemCardapio);
         repository.save(entity);
         return mapper.toItemCardapio(entity);
+    }
+
+    public ItemCardapio salvar(ItemCardapio item){
+        return criarItemCardapio(item);
+    }
+
+    @Override
+    public void deletar(ItemCardapio item) {
+        repository.delete(mapper.toEntity(item));
     }
 
     @Override
