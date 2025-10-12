@@ -61,11 +61,8 @@ public class TipoUsuarioApiController {
             @PathVariable Long id,
             @RequestBody CriarTipoUsuarioDto tipoUsuarioDto
     ){
-        TipoUsuario tipoUsuario = new TipoUsuario();
-        tipoUsuario.setNome(tipoUsuarioDto.getNome());
-        tipoUsuario.setDescricao(tipoUsuarioDto.getDescricao());
 
-        TipoUsuario atualizado = atualizarTipoUsuarioController.atualizar(id, tipoUsuario);
+        TipoUsuario atualizado = atualizarTipoUsuarioController.atualizar(id, tipoUsuarioDto);
         log.info("Tipo de Usuário atualizado: {}, id: {}", atualizado.getDescricao(), atualizado.getId());
         return ResponseEntity.ok(map(atualizado));
     }

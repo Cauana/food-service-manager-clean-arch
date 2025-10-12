@@ -1,4 +1,4 @@
-package com.adjt.core.domain;
+package com.adjt.food_service_manager_clean_arch.core.domain;
 
 
 import org.junit.jupiter.api.Test;
