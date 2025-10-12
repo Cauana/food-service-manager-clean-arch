@@ -5,6 +5,9 @@ import com.adjt.food_service_manager_clean_arch.core.dto.CriarUsuarioDto;
 import com.adjt.food_service_manager_clean_arch.core.dto.RespostaUsuarioDto;
 import com.adjt.food_service_manager_clean_arch.core.usecase.usuario.*;
 
+import com.adjt.food_service_manager_clean_arch.core.usecase.usuario.BuscarUsuarioUseCaseImpl;
+import com.adjt.food_service_manager_clean_arch.core.usecase.usuario.CadastrarUsuarioUseCaseImpl;
+import com.adjt.food_service_manager_clean_arch.core.usecase.usuario.ListarTodosUsuariosUseCaseImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -33,8 +36,8 @@ public class UsuarioApiController {
     }
 
 	@GetMapping
-	public ResponseEntity<List<RespostaUsuarioDto>> buscarUsuarioPorId() {
-		List<Usuario> usuarios = listarTodosUsuariosUseCase.buscarTodosUsuarios();
+	public ResponseEntity<List<RespostaUsuarioDto>> listarUsuarios() {
+		List<Usuario> usuarios = listarTodosUsuariosUseCase.listarTodosUsuarios();
 		log.info("Listando todos os Usuarios");
 		List<RespostaUsuarioDto> respostaUsuarioDtos = usuarios.stream().map(this::map).toList();
 		return ResponseEntity.ok(respostaUsuarioDtos);

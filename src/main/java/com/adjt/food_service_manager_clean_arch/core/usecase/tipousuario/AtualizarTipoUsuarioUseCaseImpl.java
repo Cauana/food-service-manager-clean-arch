@@ -1,6 +1,7 @@
 package com.adjt.food_service_manager_clean_arch.core.usecase.tipousuario;
 
 import com.adjt.food_service_manager_clean_arch.core.domain.TipoUsuario;
+import com.adjt.food_service_manager_clean_arch.core.dto.CriarTipoUsuarioDto;
 import com.adjt.food_service_manager_clean_arch.core.gateway.TipoUsuarioGateway;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -16,7 +17,7 @@ public class AtualizarTipoUsuarioUseCaseImpl implements AtualizarTipoUsuarioUseC
     }
 
     @Override
-    public TipoUsuario atualizar(Long id, TipoUsuario tipoUsuarioAtualizado){
+    public TipoUsuario atualizar(Long id, CriarTipoUsuarioDto tipoUsuarioAtualizado){
         TipoUsuario existente = tipoUsuarioGateway.buscarPorId(id)
                 .orElseThrow(() -> new ResponseStatusException(
                         HttpStatus.NOT_FOUND,

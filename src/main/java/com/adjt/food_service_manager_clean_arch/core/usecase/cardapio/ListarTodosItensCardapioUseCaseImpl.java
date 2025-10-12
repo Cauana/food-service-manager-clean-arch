@@ -11,7 +11,7 @@ public class ListarTodosItensCardapioUseCaseImpl {
 
     private final ItemCardapioGateway itemCardapioGateway;
 
-    public List<ItemCardapio> buscarTodosItemCardapioUseCase(){
+    public List<ItemCardapio> listarTodosItemCardapioUseCase(){
        return itemCardapioGateway.buscarTodosItensCardapio();
     }
 }
