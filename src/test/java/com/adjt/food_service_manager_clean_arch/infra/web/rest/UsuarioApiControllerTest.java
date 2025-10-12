@@ -185,11 +185,11 @@ class UsuarioApiControllerTest {
     void deveDeletarUsuarioRetornarNoContent() {
         doNothing().when(deletarUsuarioUseCaseImpl).deletarUsuario(usuarioId);
 
-        ResponseEntity<Void> response = usuarioApiController.deletarUsuario(usuarioId);
+        ResponseEntity<String> response = usuarioApiController.deletarUsuario(usuarioId);
 
         assertNotNull(response);
-        assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
-        assertNull(response.getBody());
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertNotNull(response.getBody());
 
         verify(deletarUsuarioUseCaseImpl, times(1)).deletarUsuario(usuarioId);
 

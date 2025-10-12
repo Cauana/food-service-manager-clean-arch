@@ -51,7 +51,7 @@ public class ItemCardapioApiController {
 
     @GetMapping("/restaurante/{idRestaurante}")
     public ResponseEntity<List<RespostaItemCardapioDto>> listarItensPorRestaurante(@PathVariable Long idRestaurante) {
-        List<ItemCardapio> itens = listarItemCardapioController.buscarTodosItemCardapioUseCase()
+        List<ItemCardapio> itens = listarItemCardapioController.listarTodosItemCardapioUseCase()
             .stream()
             .filter(item -> item.getRestaurante() != null && item.getRestaurante().getId().equals(idRestaurante))
             .toList();

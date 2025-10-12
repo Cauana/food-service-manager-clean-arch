@@ -4,9 +4,7 @@ import com.adjt.food_service_manager_clean_arch.core.domain.ItemCardapio;
 import com.adjt.food_service_manager_clean_arch.core.domain.Restaurante;
 import com.adjt.food_service_manager_clean_arch.core.dto.CriarItemCardapioDto;
 import com.adjt.food_service_manager_clean_arch.core.dto.RespostaItemCardapioDto;
-import com.adjt.food_service_manager_clean_arch.core.usecase.cardapio.BuscarItemCardapioUseCaseImpl;
-import com.adjt.food_service_manager_clean_arch.core.usecase.cardapio.CadastrarItemCardapioUseCaseImpl;
-import com.adjt.food_service_manager_clean_arch.core.usecase.cardapio.ListarTodosItensCardapioUseCaseImpl;
+import com.adjt.food_service_manager_clean_arch.core.usecase.cardapio.*;
 import jakarta.servlet.http.HttpSession;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -36,21 +34,29 @@ class ItemCardapioApiControllerTest {
     @Mock
     private  ListarTodosItensCardapioUseCaseImpl listarTodosItensCardapioUseCaseImpl;
 
+    @Mock
+    private AtualizarItemCardapioUseCaseImpl atualizarItemCardapioUseCaseImpl;
+
+    @Mock
+    private DeletarItemCardapioUseCaseImpl deletarItemCardapioUseCase;
+
     @InjectMocks
     private ItemCardapioApiController itemCardapioApiController;
 
     @Mock
     private HttpSession sessionMock;
 
+    private final Long itemCardapioId = 1L;
     private CriarItemCardapioDto criarItemCardapioDto;
     private ItemCardapio itemCardapioCriado;
     private ItemCardapio itemCardapioEncontrado;
+    private ItemCardapio itemCardapioAtualizado;
 
     @BeforeEach
     void setup(){
         criarItemCardapioDto = new CriarItemCardapioDto("Iscas de Frango", "Pedaços de peito de frango com molho especial", 34.9, true, "/imagens/cardapio/itens/iscas-frango.png", 1001L);
         itemCardapioCriado = new ItemCardapio(101L , "Iscas de Frango", "Pedaços de peito de frango com molho especial", 34.9, true, "/imagens/cardapio/itens/iscas-frango.png", Restaurante.builder().build());
-        itemCardapioEncontrado = new ItemCardapio(201L , "Spaguete ao molho sugo", "Massa do tipo spaguete com molho sugo especial", 44.9, true, "/imagens/cardapio/itens/spaguete.png", Restaurante.builder().build());
+        itemCardapioEncontrado = new ItemCardapio(itemCardapioId , "Spaguete ao molho sugo", "Massa do tipo spaguete com molho sugo especial", 44.9, true, "/imagens/cardapio/itens/spaguete.png", Restaurante.builder().build());
     }
     @Test
     @DisplayName("Deve criar um item do cardápio com sucesso e retornar 201 CREATED")
@@ -113,5 +119,44 @@ class ItemCardapioApiControllerTest {
         assertTrue(response.getBody().isEmpty());
 
     }
+
+    @Test
+    @DisplayName("Deve atualizar um item cardápio com sucesso e retornar 200 OK")
+    void deveAtualizarRetornarOkComItemCardapioAtualizado() {
+        when(atualizarItemCardapioUseCaseImpl.atualizar(itemCardapioId, criarItemCardapioDto, sessionMock)).thenReturn(itemCardapioEncontrado);
+
+        ResponseEntity<RespostaItemCardapioDto> response = itemCardapioApiController.atualizarItemCardapio(itemCardapioId, criarItemCardapioDto, sessionMock);
+
+        assertNotNull(response);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertNotNull(response.getBody());
+
+
+        assertEquals(itemCardapioId, response.getBody().getId());
+        assertEquals("Spaguete ao molho sugo", response.getBody().getNome());
+        assertEquals(true, response.getBody().getDisponibilidade());
+
+
+        verify(atualizarItemCardapioUseCaseImpl, times(1)).atualizar(itemCardapioId, criarItemCardapioDto, sessionMock);
+
+    }
+
+    @Test
+    @DisplayName("Deve deletar um item do cardapio com sucesso e retornar 204")
+    void deveDeletarItemCardapioRetornarNoContent() {
+        doNothing().when(deletarItemCardapioUseCase).deletar(itemCardapioId, sessionMock);
+
+        ResponseEntity<String> response = itemCardapioApiController.deletarItem(itemCardapioId, sessionMock);
+
+        assertNotNull(response);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertNotNull(response.getBody());
+
+        verify(deletarItemCardapioUseCase, times(1)).deletar(itemCardapioId, sessionMock);
+
+    }
+
+
+
 
 }

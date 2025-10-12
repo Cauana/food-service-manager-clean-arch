@@ -4,9 +4,9 @@ import com.adjt.food_service_manager_clean_arch.core.domain.Restaurante;
 import com.adjt.food_service_manager_clean_arch.core.domain.Usuario;
 import com.adjt.food_service_manager_clean_arch.core.dto.CriarRestauranteDto;
 import com.adjt.food_service_manager_clean_arch.core.dto.RespostaRestauranteDto;
-import com.adjt.food_service_manager_clean_arch.core.usecase.restaurante.BuscarRestauranteUseCaseImpl;
-import com.adjt.food_service_manager_clean_arch.core.usecase.restaurante.CadastrarRestauranteUseCaseImpl;
-import com.adjt.food_service_manager_clean_arch.core.usecase.restaurante.ListarTodosRestaurantesUseCaseImpl;
+import com.adjt.food_service_manager_clean_arch.core.dto.RespostaUsuarioDto;
+import com.adjt.food_service_manager_clean_arch.core.usecase.cardapio.AtualizarItemCardapioUseCaseImpl;
+import com.adjt.food_service_manager_clean_arch.core.usecase.restaurante.*;
 import jakarta.servlet.http.HttpSession;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -36,21 +36,31 @@ class RestauranteApiControllerTest {
 
     @Mock
     private ListarTodosRestaurantesUseCaseImpl listarTodosRestaurantesUseCaseImpl;
+
+    @Mock
+    private AtualizarRestauranteUseCaseImpl atualizarRestauranteUseCaseImpl;
+
+    @Mock
+    private DeletarRestauranteUseCaseImpl deletarRestauranteUseCaseImpl;
+
     @InjectMocks
     private RestauranteApiController restauranteApiController;
 
     @Mock
     private HttpSession sessionMock;
 
+    private final Long restauranteId = 1L;
     private CriarRestauranteDto criarRestauranteDto;
     private Restaurante restauranteCriado;
     private Restaurante restauranteEncontrado;
+    private Restaurante restauranteAtualizado;
 
     @BeforeEach
     void setUp() {
         criarRestauranteDto = new CriarRestauranteDto("Giraffas", "Brasilia", "Brasileira", "10:00 as 23:00", 101L);
-        restauranteCriado = new Restaurante(1L ,"Giraffas", "Samambaia", "Brasileira", "10:00 as 23:00", new Usuario());
+        restauranteCriado = new Restaurante(restauranteId ,"Giraffas", "Samambaia", "Brasileira", "10:00 as 23:00", new Usuario());
         restauranteEncontrado = new Restaurante(2L ,"Spoleto", "Taguatinga", "Italiana", "10:00 as 22:00", new Usuario());
+        restauranteAtualizado = new Restaurante(restauranteId,"Paparoto Cozina", "Paulista", "Francesa", "10:00 as 22:00", new Usuario());
     }
 
     @Test
@@ -111,6 +121,43 @@ class RestauranteApiControllerTest {
         assertNotNull(response);
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertTrue(response.getBody().isEmpty());
+    }
+
+
+    @Test
+    @DisplayName("Deve atualizar um restaurante com sucesso e retornar 200 OK")
+    void deveAtualizarRetornarOkComRestauranteAtualizado() {
+        when(atualizarRestauranteUseCaseImpl.atualizarRestaurante(restauranteId, criarRestauranteDto)).thenReturn(restauranteEncontrado);
+
+        ResponseEntity<RespostaRestauranteDto> response = restauranteApiController.atualizarRestaurante(restauranteId, criarRestauranteDto);
+
+        assertNotNull(response);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertNotNull(response.getBody());
+
+
+        assertEquals(2, response.getBody().getId());
+        assertEquals("Spoleto", response.getBody().getNome());
+        assertEquals("Italiana", response.getBody().getTipoCozinha());
+
+
+        verify(atualizarRestauranteUseCaseImpl, times(1)).atualizarRestaurante(restauranteId, criarRestauranteDto);
+
+    }
+
+    @Test
+    @DisplayName("Deve deletar um restaurante com sucesso e retornar 204")
+    void deveDeletarRestauranteRetornarNoContent() {
+        doNothing().when(deletarRestauranteUseCaseImpl).deletarRestaurante(restauranteId);
+
+        ResponseEntity<String> response = restauranteApiController.deletar(restauranteId);
+
+        assertNotNull(response);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertNotNull(response.getBody());
+
+        verify(deletarRestauranteUseCaseImpl, times(1)).deletarRestaurante(restauranteId);
+
     }
 
 }

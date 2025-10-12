@@ -17,10 +17,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.mock.web.MockHttpSession;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.Collections;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -28,96 +28,132 @@ class AtualizarItemCardapioUseCaseImplTest {
 
     @Mock
     private ItemCardapioGateway itemCardapioGateway;
+
     @InjectMocks
-    private AtualizarItemCardapioUseCaseImpl atualizarItemCardapioUseCaseImpl;
+    private AtualizarItemCardapioUseCaseImpl atualizarItemCardapioUseCase;
+
+    private final Long itemCardapioId = 5L;
+    private final Long inexistenteId = 99L;
+    private final String cpfDono = "12345678900";
+    private final String cpfOutro = "98765432100";
+    private final String tipoDono = "DONO_RESTAURANTE";
+    private final String tipoCliente = "CLIENTE";
 
     private HttpSession sessionMock;
-    private CriarItemCardapioDto novosItemCardapioDto;
-    private ItemCardapio itemCardapioExistente;
-
-    private final Long itemCardpioId = 5L;
-    private Restaurante restauranteMock;
-    private Usuario usuarioDonoMock;
+    private ItemCardapio itemExistente;
+    private CriarItemCardapioDto dtoAtualizacao;
 
     @BeforeEach
     void setUp() {
         sessionMock = new MockHttpSession();
-        novosItemCardapioDto = new CriarItemCardapioDto(
-                "Iscas de Frango",
-                "Pedaços de peito de frango com molho especial",
-                34.9,
-                true,
-                "/imagens/cardapio/itens/iscas-frango.png",
-                10L);
 
-        itemCardapioExistente = new ItemCardapio(
-                itemCardpioId,
-                "Spaguete ao molho sugo",
-                "Massa do tipo spaguete com molho sugo especial",
-                44.9,
+        Usuario dono = new Usuario(1L, "Henrique Fogaça", "fogacaa@rest.com", cpfDono, "fogaca01", "senha123", tipoDono, Collections.singletonList(Restaurante.builder().build()));
+
+        Restaurante restaurante = new Restaurante(10L, "Sal Gastronomia", "Cidade Jardim", "Contemporânea", "11h-23h", dono);
+
+        itemExistente = new ItemCardapio(
+                itemCardapioId,
+                "Pizza Antiga",
+                "Massa fina",
+                50.00,
                 true,
-                "/imagens/cardapio/itens/spaguete.png",
-                restauranteMock
+                "foto_antiga.jpg",
+                restaurante
         );
 
-
-        restauranteMock = new Restaurante(10L ,
-                "Spoleto",
-                "Taguatinga",
-                "Italiana",
-                "10:00 as 22:00",
-                usuarioDonoMock);
-
-        usuarioDonoMock =  Usuario.builder()
-                .id(1L)
-                .nome("João da Silva")
-                .cpf("40185812970")
-                .tipoUsuario("DONO_RESTAURANTE")
-                .build();
+        dtoAtualizacao = new CriarItemCardapioDto(
+                "Pizza Nova",
+                "Massa grossa, mais recheio",
+                65.00,
+                false,
+                "foto_nova.jpg",
+                null
+        );
     }
 
-//TODO: Corrigir esse teste
-    /*
     @Test
-    @DisplayName("Deve atualizar o item do carpadio com sucesso e retornar o objeto atualizado")
-    void deveAtualizarItemCardapioComSucesso() {
+    @DisplayName("Deve atualizar o item do cardápio com sucesso quando o usuário for o dono correto")
+    void deveAtualizarComSucessoQuandoUsuarioEODono() {
+        sessionMock.setAttribute("tipoUsuario", tipoDono);
+        sessionMock.setAttribute("cpfUsuario", cpfDono);
 
-        sessionMock.setAttribute("tipoUsuario", "DONO_RESTAURANTE");
-        sessionMock.setAttribute("cpfUsuario", "40185812970");
-        when(itemCardapioGateway.buscarPorId(itemCardpioId)).thenReturn(Optional.ofNullable(itemCardapioExistente));
+        when(itemCardapioGateway.buscarPorId(itemCardapioId)).thenReturn(Optional.of(itemExistente));
+        when(itemCardapioGateway.salvar(any(ItemCardapio.class))).thenReturn(itemExistente);
 
-        when(itemCardapioGateway.salvar(any(ItemCardapio.class))).thenReturn(itemCardapioExistente);
-
-        ItemCardapio resultado = atualizarItemCardapioUseCaseImpl.atualizar(itemCardpioId, novosItemCardapioDto, sessionMock);
+        ItemCardapio resultado = atualizarItemCardapioUseCase.atualizar(itemCardapioId, dtoAtualizacao, sessionMock);
 
         assertNotNull(resultado);
-        assertEquals(itemCardpioId, resultado.getId());
+        assertEquals(dtoAtualizacao.getNome(), resultado.getNome());
+        assertEquals(dtoAtualizacao.getPreco(), resultado.getPreco());
+        assertEquals(dtoAtualizacao.getDescricao(), resultado.getDescricao());
 
-        assertEquals(novosItemCardapioDto.getNome(), resultado.getNome());
-        assertEquals(novosItemCardapioDto.getDescricao(), resultado.getDescricao());
-        assertEquals(novosItemCardapioDto.getPreco(), resultado.getPreco());
-
-        verify(itemCardapioGateway, times(1)).buscarPorId(itemCardpioId);
-        verify(itemCardapioGateway, times(1)).salvar(itemCardapioExistente);
-    }*/
+        verify(itemCardapioGateway, times(1)).buscarPorId(itemCardapioId);
+        verify(itemCardapioGateway, times(1)).salvar(itemExistente);
+    }
 
     @Test
-    @DisplayName("Deve lançar ResponseStatusException 404 quando o item do carpadio não é encontrado")
-    void deveLancarNotFoundQuandoItemCardapioNaoEncontrado() {
-
-        Long idNaoExistente = 99L;
-        when(itemCardapioGateway.buscarPorId(idNaoExistente)).thenReturn(Optional.empty());
+    @DisplayName("Deve lançar 404 NOT FOUND se o item do cardápio não for encontrado")
+    void deveLancarErroQuandoItemCardapioNaoEncontrado() {
+        sessionMock.setAttribute("tipoUsuario", tipoDono);
+        sessionMock.setAttribute("cpfUsuario", cpfDono);
+        when(itemCardapioGateway.buscarPorId(inexistenteId)).thenReturn(Optional.empty());
 
         ResponseStatusException exception = assertThrows(ResponseStatusException.class, () -> {
-            atualizarItemCardapioUseCaseImpl.atualizar(idNaoExistente, novosItemCardapioDto, sessionMock);
+            atualizarItemCardapioUseCase.atualizar(inexistenteId, dtoAtualizacao, sessionMock);
         });
 
         assertEquals(HttpStatus.NOT_FOUND, exception.getStatusCode());
-        assertEquals("404 NOT_FOUND \"Item do cardápio não encontrado\"", exception.getMessage());
+        assertTrue(exception.getMessage().contains("Item do cardápio não encontrado"));
 
-        verify(itemCardapioGateway, times(1)).buscarPorId(idNaoExistente);
-        verify(itemCardapioGateway, never()).criarItemCardapio(any());
+        verify(itemCardapioGateway, never()).salvar(any());
     }
 
-}
+    @Test
+    @DisplayName("Deve lançar 403 FORBIDDEN se o tipo de usuário não for DONO_RESTAURANTE")
+    void deveLancarErrroSeTipoUsuarioIncorreto() {
+        sessionMock.setAttribute("tipoUsuario", tipoCliente);
+        sessionMock.setAttribute("cpfUsuario", cpfDono);
+        when(itemCardapioGateway.buscarPorId(itemCardapioId)).thenReturn(Optional.of(itemExistente));
 
+        ResponseStatusException exception = assertThrows(ResponseStatusException.class, () -> {
+            atualizarItemCardapioUseCase.atualizar(itemCardapioId, dtoAtualizacao, sessionMock);
+        });
+
+        assertEquals(HttpStatus.FORBIDDEN, exception.getStatusCode());
+        assertTrue(exception.getMessage().contains("Somente o dono do restaurante pode atualizar"));
+
+        verify(itemCardapioGateway, never()).salvar(any());
+    }
+
+    @Test
+    @DisplayName("Deve lançar 403 FORBIDDEN se o usuário for DONO_RESTAURANTE, mas o CPF for diferente")
+    void deveFalharNaAutorizacaoDonoIncorreto() {
+        sessionMock.setAttribute("tipoUsuario", tipoDono);
+        sessionMock.setAttribute("cpfUsuario", cpfOutro);
+        when(itemCardapioGateway.buscarPorId(itemCardapioId)).thenReturn(Optional.of(itemExistente));
+
+        ResponseStatusException exception = assertThrows(ResponseStatusException.class, () -> {
+            atualizarItemCardapioUseCase.atualizar(itemCardapioId, dtoAtualizacao, sessionMock);
+        });
+
+        assertEquals(HttpStatus.FORBIDDEN, exception.getStatusCode());
+        assertTrue(exception.getMessage().contains("Somente o dono do restaurante pode atualizar"));
+
+        verify(itemCardapioGateway, never()).salvar(any());
+    }
+
+    @Test
+    @DisplayName("Deve lançar 403 FORBIDDEN se tipoUsuario for nulo na sessão")
+    void deveFalharNaAutorizacaoTipoUsuarioNulo() {
+        sessionMock.setAttribute("tipoUsuario", null);
+        sessionMock.setAttribute("cpfUsuario", cpfDono);
+        when(itemCardapioGateway.buscarPorId(itemCardapioId)).thenReturn(Optional.of(itemExistente));
+
+        ResponseStatusException exception = assertThrows(ResponseStatusException.class, () -> {
+            atualizarItemCardapioUseCase.atualizar(itemCardapioId, dtoAtualizacao, sessionMock);
+        });
+
+        assertEquals(HttpStatus.FORBIDDEN, exception.getStatusCode());
+        assertTrue(exception.getMessage().contains("Somente o dono do restaurante pode atualizar"));
+    }
+}
