@@ -59,10 +59,10 @@ public class RestauranteApiController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletar(@PathVariable Long id){
+    public ResponseEntity<String> deletar(@PathVariable Long id){
         deletarRestauranteController.deletarRestaurante(id);
         log.info("Restaurante com ID {} foi deletado.", id);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok("Restaurante deletado com sucesso!");
 
     }
 

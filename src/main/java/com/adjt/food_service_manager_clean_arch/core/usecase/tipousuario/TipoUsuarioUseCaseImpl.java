@@ -15,12 +15,7 @@ public class TipoUsuarioUseCaseImpl {
 
     public TipoUsuario criarTipoUsuario(CriarTipoUsuarioDto tipoDto) {
 
-        TipoUsuario novoTipoUsuario = TipoUsuario.builder()
-                .nome(tipoDto.getNome())
-                .descricao(tipoDto.getDescricao())
-                .build();
-
-        return tipoUsuarioGateway.criarTipoUsuario(novoTipoUsuario);
+        return tipoUsuarioGateway.criarTipoUsuario(map(tipoDto));
     }
 
     public TipoUsuario map(CriarTipoUsuarioDto dto) {

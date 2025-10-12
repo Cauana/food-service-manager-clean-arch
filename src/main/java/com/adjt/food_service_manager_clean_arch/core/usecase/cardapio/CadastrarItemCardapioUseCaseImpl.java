@@ -37,10 +37,17 @@ public class CadastrarItemCardapioUseCaseImpl {
         String tipoUsuario = tipoUsuarioObj.toString();
         String cpfUsuario = cpfUsuarioObj.toString();
 
-        if (!"DONO_RESTAURANTE".equals(tipoUsuario) || !restaurante.getDonoRestaurante().getCpf().equals(cpfUsuario)) {
+        if (!"DONO_RESTAURANTE".equals(tipoUsuario)) {
             throw new ResponseStatusException(
                     HttpStatus.FORBIDDEN,
                     "Somente o perfil DONO_RESTAURANTE pode cadastrar itens de cardápio.");
+        }
+
+        //validação dono restaurante
+        if(!restaurante.getDonoRestaurante().getCpf().equals(cpfUsuario)) {
+            throw new ResponseStatusException(
+                    HttpStatus.FORBIDDEN,
+                    "Usuário logado não corresponde ao dono do restaurante informado.");
         }
         ItemCardapio novoItem = map(item, restaurante);
         return itemCardapioGateway.criarItemCardapio(novoItem);

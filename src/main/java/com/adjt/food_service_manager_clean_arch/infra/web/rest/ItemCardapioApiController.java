@@ -49,6 +49,16 @@ public class ItemCardapioApiController {
         return ResponseEntity.ok(map(itemCardapio));
     }
 
+    @GetMapping("/restaurante/{idRestaurante}")
+    public ResponseEntity<List<RespostaItemCardapioDto>> listarItensPorRestaurante(@PathVariable Long idRestaurante) {
+        List<ItemCardapio> itens = listarItemCardapioController.buscarTodosItemCardapioUseCase()
+            .stream()
+            .filter(item -> item.getRestaurante() != null && item.getRestaurante().getId().equals(idRestaurante))
+            .toList();
+        List<RespostaItemCardapioDto> resposta = itens.stream().map(this::map).toList();
+        return ResponseEntity.ok(resposta);
+}   
+
     @PutMapping("/{id}")
     public ResponseEntity<RespostaItemCardapioDto> atualizarItemCardapio(
             @PathVariable Long id,
@@ -61,9 +71,9 @@ public class ItemCardapioApiController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletarItem(@PathVariable Long id, HttpSession session){
+    public ResponseEntity<String> deletarItem(@PathVariable Long id, HttpSession session){
         deletarItemCardapioUseController.deletar(id,session);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok("Item do cardápio deletado com sucesso!");
     }
 
     public RespostaItemCardapioDto map(ItemCardapio itemCardapio) {
